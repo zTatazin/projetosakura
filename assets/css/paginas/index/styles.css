@@ -1,0 +1,1892 @@
+/*
+  Projeto: Sorgo do Vale
+  Autor: Otávio Miguel de Araújo Oliveira
+  Descrição: CSS organizado para site Agrinho 2025
+*/
+
+/* 
+  Reset CSS: Remove margens/paddings padrão e define box-sizing border-box 
+  para facilitar o controle de layout e evitar estouros de largura.
+  Também oculta rolagem horizontal e aplica rolagem suave na página.
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* ===========================================
+   Variáveis Globais
+   ===========================================
+   - Centraliza cores, fontes e sombras.
+   - Facilita manutenção e ajustes rápidos no tema.
+   =========================================== */
+
+:root {
+  --cor-fundonav: #111;
+  --cor-principal: #0b1e18;
+  --cor-fundo: #ffffff;
+  --cor-fundonightmode: #111111;
+
+  --cor-titulos: #ab0067;
+
+  --cor-paragrafos: #1a1a1a;
+  --cor-paragrafosnightmode: #f5f5f5;
+
+  --fonte-base: "Atkinson Hyperlegible", Arial, sans-serif;
+  --sombra-botao: rgba(0, 0, 0, 0.2);
+}
+
+/* =======================================
+   - Linha decorativa padrão (HR).
+   ======================================= */
+
+/* Linha HR reutilizada em seções */
+.styled-line {
+  border: 0;
+  height: 2px;
+  background: #0000006e;
+  margin: 0;
+  width: 100%;
+}
+
+/* ===========================================
+   Navegação Principal
+   ===========================================
+   - Barra fixa no topo.
+   - Layout flexbox para alinhar logo, links e botões.
+   - Responsivo para desktop e mobile.
+   =========================================== */
+
+.navegation {
+  position: fixed;
+  transition: 0.5s;
+  top: 0;
+  width: 100%;
+  height: clamp(60px, 11vh, 90px);
+  background-color: var(--cor-fundonav);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 20;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* Logo da navegação: define tamanho e interação hover. */
+.nav-left .logo img {
+  height: 60px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+/* 
+  Nav List: estrutura da lista de links na navegação,
+  usa flexbox para alinhar itens com espaçamento.
+*/
+.nav-list {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 60px;
+  gap: 32px;
+  list-style: none;
+}
+
+/* Estilo dos links dentro da Nav List. */
+.nav-list li a {
+  font-size: 16px;
+  color: #ffffff;
+  font-family: var(--fonte-base);
+  text-decoration: none;
+}
+
+.nav-list a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Efeito hover para destacar links da Nav List. */
+.nav-list li a:hover {
+  color: #ff9100;
+}
+
+/* Nav Right e Nav Left: alinham itens horizontalmente com espaçamento */
+.nav-right,
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ================================
+   Painel de Troca de Idioma
+   ================================ */
+
+/* Botão de Idioma: ícone clicável que abre painel de seleção de idioma.*/
+.languageButton img {
+  height: 30px;
+  cursor: pointer;
+}
+
+/* Esconde o input toggle do painel de idiomas */
+.languageToggle {
+  display: none;
+}
+
+/* Botão X para fechar o painel manualmente */
+.close-language-panel {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-language-panel:hover {
+  color: #e74c3c;
+}
+
+/* 
+  Painel de Idiomas: aparece centralizado com transição suave.
+*/
+.language-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(30px);
+  width: 280px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 40px 24px 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+  z-index: 998;
+}
+
+.languageToggle:checked ~ .language-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Título do painel de idiomas */
+.language-panel h1 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #333;
+  text-align: center;
+  font-family: var(--fonte-base);
+}
+
+/* Container dos botões de idioma */
+.language-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Botões de seleção de idioma */
+.lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: #47b881;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.lang-btn:hover {
+  background: #368f66;
+}
+
+.lang-btn.en {
+  background: #2371a9;
+}
+
+.lang-btn.en:hover {
+  background: #19567e;
+}
+
+/* === Botão Modo Noturno === */
+/* Tema claro/escuro em desktop e mobile */
+/* .desktop-only e .mobile-only para visibilidade */
+
+.btn-mode-night {
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 60px;
+  background: linear-gradient(to right, #f5f5f5, #e0e0e0);
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+.btn-mode-night:hover {
+  background: linear-gradient(to right, #e6e6e6, #cccccc);
+}
+
+.btn-mode-night::before {
+  content: "☀️";
+  font-size: 22px;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.4s ease, background 0.4s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#darkModeToggle:checked ~ header .btn-mode-night {
+  background: linear-gradient(to right, #2c2c2c, #1a1a1a);
+}
+
+#darkModeToggle:checked ~ header .btn-mode-night::before {
+  content: "🌙";
+  background-color: #111;
+  color: #fff;
+  left: 52px;
+}
+
+/* Visibilidade por dispositivo do botão noturno */
+.desktop-only {
+  display: flex;
+}
+.mobile-only {
+  display: none;
+}
+
+#darkModeToggle:checked ~ section,
+#darkModeToggle:checked ~ header .navegation {
+  background: var(--cor-fundonightmode);
+  transition: 0.5s;
+}
+
+#darkModeToggle:checked ~ header .navegation a,
+#darkModeToggle:checked ~ .sobre p,
+#darkModeToggle:checked ~ .produtos p,
+#darkModeToggle:checked ~ .produtos h1,
+#darkModeToggle:checked ~ .produtos h2,
+#darkModeToggle:checked ~ .susten p {
+  color: var(--cor-paragrafosnightmode);
+  transition: 0.5s;
+}
+
+/* Exemplo para links e botões se precisar */
+#darkModeToggle:checked ~ a {
+  color: #eee;
+}
+
+#darkModeToggle:checked ~ button {
+  background: #333;
+  color: #fff;
+}
+
+/* =====================================
+   Configuração de Containers e Imagem de Fundo
+   ===================================== */
+
+/* Seção base: define fundo padrão, transição suave e cursor padrão */
+section {
+  background-color: var(--cor-fundo);
+  transition: 0.5s;
+  cursor: auto;
+}
+
+/* Container da imagem de fundo no topo da página */
+.backgroundimage {
+  height: 400px;
+}
+
+/* Imagem de fundo: cobre toda a largura e altura do container */
+.backgroundimage img {
+  width: 100%;
+  height: 730px;
+  transition: 0.5s;
+  object-fit: cover;
+  background-position: center 70%;
+}
+
+
+/* ============================================
+   Modo Noturno Ativo
+   ============================================
+
+   Define alterações de cores e imagens 
+   quando o modo noturno é ativado.
+   Inclui:
+   - Fundo escurecido.
+   - Textos em cor clara.
+   - Filtro de brilho para melhor contraste.
+   - Herança de cores em sections.
+   ============================================ */
+
+body.active {
+  background-color: var(--cor-fundonightmode);
+}
+
+body.active .backgroundimage img {
+  background-size: cover;
+  background-position: center 70%;
+  filter: brightness(0.7);
+}
+
+body.active section {
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Troca a cor dos parágrafos, links e títulos para branco, visando destaque no night mode */
+body.active .brevesobre p,
+body.active .navegation a,
+body.active .sustentabilidade p,
+body.active .produtos p,
+body.active .produtos h1 {
+  color: var(--cor-paragrafosnightmode);
+}
+
+body.active .brevesobre p {
+  text-align: justify;
+  text-indent: 2em;
+}
+
+body.active .navegation {
+  background-color: #111;
+  transition: 0.5s;
+}
+
+body.active .manual-btn {
+  border: 2px solid #fff;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+/* Fim do bloco Modo Noturno Ativo */
+
+/* ==============================================
+   Botão de Acessibilidade e Painel de Opções
+   ==============================================
+   - Botão fixo no canto.
+   - Painel flutuante com opções.
+   - Animações, hover e foco para acessibilidade.
+   ============================================== */
+
+/* Botão flutuante de acessibilidade (ícone fixo no canto) */
+.accessibility-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.accessibility-btn img {
+  width: 70%;
+}
+
+.accessibility-btn .icon-close {
+  display: none;
+}
+
+#accessibilityToggle:checked ~ .accessibility-btn .icon-open {
+  display: none;
+}
+
+#accessibilityToggle:checked ~ .accessibility-btn .icon-close {
+  display: block;
+}
+
+.accessibility-btn:hover {
+  transform: scale(1.1);
+  background-color: #1d4ed8;
+}
+
+/* Animação de pulso para destacar o botão acessível */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Destaque de foco para navegação por teclado */
+.accessibility-btn:focus {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.accessibility-option:focus,
+.resetAccessibility:focus {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Painel de opções, oculto até o checkbox ser marcado */
+.accessibility-panel {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 280px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  z-index: 998;
+  transform: translateY(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.accessibility-toggle {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
+
+/* Exibe painel quando toggle está ativado */
+.accessibility-toggle:checked ~ .accessibility-panel {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.accessibility-toggle:checked ~ .accessibility-btn {
+  animation: none;
+}
+
+.accessibility-option {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Botão para resetar todas as opções de acessibilidade */
+.resetAccessibility {
+  border: none;
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.resetAccessibility {
+  width: 100%;
+}
+
+.resetAccessibility:hover {
+  background-color: #fee2e2;
+}
+
+.accessibility-option:hover {
+  background-color: #f3f4f6;
+}
+
+.accessibility-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accessibility-icon img {
+  width: 80%;
+}
+
+/* Esconde checkboxes de opções */
+.option-toggle {
+  display: none;
+}
+
+/* ==============================================
+   Funções de Botões de Acessibilidade
+   ==============================================
+   Define estilos e efeitos ativados quando 
+   cada opção de acessibilidade está marcada.
+   Inclui:
+   - Cursor ampliado
+   - Aumento de fonte
+   - Contraste invertido
+   - Links em destaque
+   - Escala de cinza
+   ============================================== */
+
+/* ======================================
+   Acessibilidade: Cursor Grande Ativado
+   OBS: O cursor pode piscar por 0.1s ao trocar hover, limitação do render do navegador 
+   ====================================== */
+#cursorToggle:checked ~ header .accessibility-option#cursor-label {
+  background-color: #e0e7ff;
+  cursor: url("/Agrinho-2025/assets/img/cursor.cur"), auto !important;
+}
+
+#cursorToggle:checked ~ *,
+#cursorToggle:checked ~ body button,
+#cursorToggle:checked ~ header :hover,
+#cursorToggle:checked ~ section :hover,
+#cursorToggle:checked ~ footer :hover {
+  cursor: url("/Agrinho-2025/assets/img/cursor.cur"), auto !important;
+}
+
+/* ======================================
+   Acessibilidade: Fontes Maiores
+   ====================================== */
+#fontSizeToggle:checked ~ header .accessibility-option#font-label {
+  background-color: #e0e7ff;
+}
+
+#fontSizeToggle:checked ~ header .navegation a,
+#fontSizeToggle:checked ~ header .accessibility-panel span,
+#fontSizeToggle:checked ~ footer a:not(.no-scale *),
+#fontSizeToggle:checked ~ footer .titulo:not(.no-scale *),
+#fontSizeToggle:checked ~ footer select,
+#fontSizeToggle:checked ~ footer textarea,
+#fontSizeToggle:checked ~ footer input,
+#fontSizeToggle:checked ~ footer label,
+#fontSizeToggle:checked ~ #copyright {
+  font-size: clamp(18px, 3vw, 20px);
+}
+
+#fontSizeToggle:checked ~ section p,
+#fontSizeToggle:checked ~ section button {
+  font-size: clamp(22px, 5vw, 28px);
+}
+
+#fontSizeToggle:checked ~ section h1,
+#fontSizeToggle:checked ~ section .sustentabilidade h1 {
+  font-size: clamp(40px, 8vw, 60px);
+}
+
+#fontSizeToggle:checked ~ section h2 {
+  font-size: clamp(35px, 7vw, 50px);
+}
+
+#fontSizeToggle:checked ~ section h3 {
+  font-size: clamp(30px, 6vw, 40px);
+}
+
+#fontSizeToggle:checked ~ section .receita .etiqueta,
+#fontSizeToggle:checked ~ section .receita .nutricional {
+  font-size: clamp(10px, 4vw, 18px);
+}
+
+#fontSizeToggle:checked ~ section .info-card h2,
+#fontSizeToggle:checked ~ section .info-card p {
+  font-size: clamp(18px, 4vw, 24px);
+}
+
+#fontSizeToggle:checked ~ section .school-info,
+#fontSizeToggle:checked ~ section .market-info,
+#fontSizeToggle:checked ~ section .dome-info,
+#fontSizeToggle:checked ~ section .wheat-info,
+#fontSizeToggle:checked ~ section .corn-info,
+#fontSizeToggle:checked ~ section .farm-info,
+#fontSizeToggle:checked ~ section .warehouse-info {
+  left: 105%;
+  top: 0;
+}
+
+/* ======================================
+   Acessibilidade: Contraste Invertido
+   ====================================== */
+#contrastToggle:checked ~ header .accessibility-option#contrast-label {
+  background-color: #e0e7ff;
+}
+
+#contrastToggle:checked ~ section,
+#contrastToggle:checked ~ header .navegation a,
+#contrastToggle:checked ~ header .navegation .nav-list,
+#contrastToggle:checked ~ header .navegation .header-menu,
+#contrastToggle:checked ~ header .navegation .nav-left,
+#contrastToggle:checked ~ header .navegation .nav-right > *:not(.language-panel),
+#contrastToggle:checked ~ .backgroundimage,
+#contrastToggle:checked ~ footer,
+#contrastToggle:checked ~ #copyright {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* ======================================
+   Acessibilidade: Links em Destaque
+   ====================================== */
+#linksModeToggle:checked ~ header .accessibility-option#linksmode-label {
+  background-color: #e0e7ff;
+}
+
+#linksModeToggle:checked ~ header .navegation a,
+#linksModeToggle:checked ~ header label:not(.no-link),
+#linksModeToggle:checked ~ section button,
+#linksModeToggle:checked ~ footer a,
+#linksModeToggle:checked ~ footer select,
+#linksModeToggle:checked ~ footer textarea,
+#linksModeToggle:checked ~ footer input,
+#linksModeToggle:checked ~ footer .botao-enviar {
+  background-color: yellow;
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+#linksModeToggle:checked ~ header .btn-mode-night {
+  outline: 3px solid yellow;
+  box-shadow: 0 0 10px 4px yellow;
+  transition: box-shadow 0.4s ease, outline 0.4s ease;
+}
+
+#linksModeToggle:checked ~ section .saibamais button {
+  outline: 3px solid yellow;
+  box-shadow: 0 0 10px 4px yellow;
+  animation: highlightPulse 1s infinite alternate;
+  color: black !important;
+  background: linear-gradient(
+    135deg,
+    #f9f871,
+    #f5e642
+  );
+}
+
+#linksModeToggle:checked ~ section .interactive-map img:not(.no-link) {
+  outline: 3px solid yellow;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 4px yellow;
+  animation: highlightPulse 1s infinite alternate;
+}
+
+/* ======================================
+   Acessibilidade: Escala de Cinza
+   ====================================== */
+#grayScaleToggle:checked ~ header .accessibility-option#grayscale-label {
+  background-color: #e0e7ff;
+}
+
+#grayScaleToggle:checked ~ section,
+#grayScaleToggle:checked ~ header .navegation a,
+#grayScaleToggle:checked ~ header .navegation .nav-list,
+#grayScaleToggle:checked ~ header .navegation .header-menu,
+#grayScaleToggle:checked ~ header .navegation .nav-left,
+#grayScaleToggle:checked
+  ~ header
+  .navegation
+  .nav-right
+  > *:not(.language-panel),
+#grayScaleToggle:checked ~ .backgroundimage,
+#grayScaleToggle:checked ~ footer,
+#grayScaleToggle:checked ~ #copyright {
+  filter: grayscale(100%);
+}
+
+/* ======================================
+   Fim das Funções de Botões de Acessibilidade
+   ====================================== */
+
+/* ===========================================================
+   Seção: Breve Sobre
+   ===========================================================
+   Define largura máxima, centralização e espaçamento interno.
+   Títulos e parágrafos com fonte, cor e espaçamento legíveis.
+   =========================================================== */
+
+.sobre {
+  background-color: var(--cor-fundo);
+  padding: 60px 20px; /* Mais espaço vertical */
+}
+
+.brevesobre {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.brevesobre h1 {
+  margin-bottom: 30px;
+  font-size: 42px; /* Um pouco maior e mais imponente */
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+  letter-spacing: 1px; /* Pequeno espaçamento entre letras */
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.1); /* Leve sombra para destacar */
+}
+
+.brevesobre p {
+  line-height: 1.8;          /* Mais espaçamento entre linhas */
+  font-size: 20px;           /* Um pouco menor para não parecer gigante */
+  text-align: justify;        /* Texto alinhado nos dois lados */
+  text-indent: 2em;          /* Indentação agradável para parágrafos */
+  font-family: var(--fonte-base);
+  color: var(--cor-paragrafos);
+  background-color: #ffffff0d; /* Leve fundo translúcido */
+  padding: 16px 20px;        /* Espaçamento interno */
+  border-radius: 12px;       /* Bordas arredondadas */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Sombra sutil */
+  margin-bottom: 20px;       /* Espaço entre parágrafos */
+}
+
+/* === Caixas dos IPs === */
+.ip-box {
+  margin: 25px auto;
+  padding: 20px 25px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 4px solid var(--cor-titulos);
+  border-radius: 12px;
+  font-size: 22px;
+  color: var(--cor-paragrafos);
+  font-family: var(--fonte-base);
+
+  backdrop-filter: blur(4px);
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.15);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ip-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.22);
+}
+
+/* === Botões de copiar === */
+.copy-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 22px;
+
+  font-size: 18px;
+  font-weight: bold;
+  font-family: var(--fonte-base);
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  background: var(--cor-titulos);
+  color: var(--cor-fundo);
+
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.copy-btn:hover {
+  background: var(--cor-titulos-hover, #d64570);
+  transform: translateY(-2px);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+#toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 14px 25px;
+
+  font-size: 18px;
+  font-family: var(--fonte-base);
+  color: #fff;
+
+  background: var(--cor-titulos);
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.3);
+
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================
+   Seção Produtos - Títulos
+   ========================================== */
+
+.produtos h1 {
+  font-size: 25px;
+  text-align: center;
+  font-family: var(--fonte-base);
+}
+
+.produtos h2 {
+  margin-top: -10px;
+  font-size: 50px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+}
+
+/* ==========================================
+   Seção Produtos - Galeria de Imagens
+   ========================================== */
+
+/* ===== Slider ===== */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 10px auto 60px auto;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 0 20px #0003;
+}
+
+.slider-container {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.slide {
+  min-width: 100%;
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 380px; /* ajuste aqui o tamanho ideal */
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+/* ===== Botões (setas) ===== */
+.slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0007;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.slider button:hover {
+  background: #000c;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* ===== Indicadores ===== */
+.slider-indicators {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.slider-indicators .indicator {
+  width: 12px;
+  height: 12px;
+  background: #fff7;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.slider-indicators .indicator.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* ==========================================
+   Botão - "Veja Nossos Produtos"
+   ========================================== */
+
+.saibamais {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.saibamais button {
+  font-size: 22px;
+  font-family: var(--fonte-base);
+  padding: 12px 40px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1e392a, #3b7c50);
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.saibamais button:hover {
+  background: linear-gradient(135deg, #2b814e, #0b7200);
+  transform: scale(1.05);
+}
+
+/* ===========================================
+   Sessão Receitas: Container e Títulos
+   ===========================================
+   - Define um limite máximo de largura para alinhar com o restante do site.
+   - Aplica margem automática para centralizar.
+   - Padding lateral para não colar no canto em telas menores.
+   - Títulos com sombra para contraste e legibilidade.
+   =========================================== */
+
+/* Container da sessão Receitas */
+.receitas {
+  background: #fdfdfd;
+  padding: 40px 20px; /* Reduzi o padding-top e bottom de 80px para 40px */
+  color: #333;
+}
+
+.receitas .livroreceitas {
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.receitas-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+/* Subtítulo da seção Receitas */
+.receitas h1 {
+  font-size: 30px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+  text-shadow: 1px 1px 0 #000, -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -1px 1px 0 #000;
+}
+
+/* Título principal da seção Receitas */
+.receitas h2 {
+  margin-top: -20px;
+  font-size: 55px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000;
+}
+
+.texto-servico {
+  text-align: center;
+  font-size: 16px;
+  max-width: 800px;          /* Limita a largura para facilitar leitura */
+  margin: 15px auto 30px;    /* Centraliza e adiciona espaçamento superior e inferior */
+  color: #444;               /* Tom um pouco mais suave que preto */
+  font-family: var(--fonte-base);
+  line-height: 1.6;          /* Espaçamento entre linhas para melhor leitura */
+  background-color: #fff8e1; /* Fundo suave para destacar o texto */
+  padding: 12px 20px;        /* Espaçamento interno */
+  border-radius: 12px;       /* Bordas arredondadas */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Sombra leve */
+}
+
+/* ===========================================
+   Livro de Receitas
+   ===========================================
+   - Grid responsivo para cards de receitas.
+   - Cada card tem imagem, botão, descrição e etiqueta.
+   - Inclui efeito hover e animações de exibir detalhes.
+   =========================================== */
+
+/* Grid principal para os cards de receitas */
+.livroreceitas {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Card de receita individual (VIP) */
+.receita {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(145deg, #ff9f43, #d35400);
+  border: 1px solid #d1a06d;
+  padding: 20px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  font-family: var(--fonte-base);
+  font-size: 16px; /* diminui de 42px para algo legível */
+  position: relative;
+  z-index: 1;
+  min-height: 400px;
+  max-width: 300px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Efeito hover para destacar o card */
+.receita:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(145deg, #ffb347, #e67e22);
+}
+
+/* Imagem da receita */
+.receita img {
+  width: 100%;          /* Ocupa toda a largura do card */
+  height: auto;         /* Mantém proporção */
+  object-fit: cover;    /* Cobre o espaço disponível sem deformar */
+  border-radius: 12px;  /* Opcional: deixa borda arredondada */
+  margin-top: 0;        /* Remove margem superior extra */
+  display: block;       /* Remove espaços abaixo da imagem */
+}
+
+.receita button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  font-size: 17px;
+  border-radius: 6px;
+  background-color: #a3471e;
+  color: #ffffff;
+  border: 1px solid #66210e;
+  font-family: var(--fonte-base);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.receita button:hover {
+  background-color: #66210e;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Texto descritivo oculto até o card ser ativado */
+.receita p {
+  font-size: 19px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  height: auto;
+  opacity: 0;
+  overflow: hidden;
+  background: #ffffff9c;
+  padding: 0 24px;
+  border: 1px solid #af7a73;
+  border-radius: 0 0 8px 8px;
+  box-sizing: border-box;
+  transition: opacity 0.2s, bottom 0.2s;
+}
+
+/* Ativa parágrafo interno com conteúdo */
+.receita.ativa .paragrafo {
+  bottom: 0;
+  opacity: 1;
+  padding: 24px;
+  height: auto;
+}
+
+/* Etiqueta nutricional no canto */
+.receita .etiqueta {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: #ffd700;
+  color: #000;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-family: var(--fonte-base);
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* Título interno do card */
+.receita h3 {
+  margin: 10px 0 10px;
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Parágrafo detalhado com scroll interno */
+.receita .paragrafo {
+  scroll-behavior: smooth;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+  color: #000;
+  background-color: #ffffffde;
+}
+
+/* Etiqueta nutricional flutuante embaixo */
+.receita .nutricional {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffd700, #f0c674); /* degrade dourado */
+  color: #000;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 12px;             /* aumenta padding horizontal para horizontalidade */
+  border-radius: 20px;            /* bordas arredondadas para estilo de “badge” */
+  font-family: var(--fonte-base);
+  display: flex;                  /* usa flex para alinhar conteúdo horizontalmente */
+  align-items: center;            /* centraliza verticalmente o texto */
+  justify-content: center;        /* centraliza horizontalmente */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* sombra mais elegante */
+  white-space: nowrap;            /* impede quebra de linha */
+  z-index: 2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.receita .nutricional:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Oculta etiqueta nutricional quando o texto está aberto */
+.receita.ativa .nutricional {
+  visibility: hidden;
+}
+
+/* ================================================
+   Mapa Interativo: Estrutura Principal
+   ================================================
+   - Título centralizado com destaque de cor.
+   - Contêiner com flex para organizar mapa e imagem.
+   - Mapa e imagem lateral com tamanhos proporcionais.
+   - Keyframes para animação de pulso em ícones.
+   ================================================ */
+
+/* Título da seção do mapa interativo */
+.interactive-map h1 {
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+}
+
+/* Contêiner flexível para mapa e icon lateral */
+.map-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Wrapper para o mapa principal */
+.map-wrapper {
+  position: relative;
+  width: 60%;
+}
+
+/* Imagem do mapa principal */
+.map-all {
+  width: 100%;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+/* Imagem complementar */
+.woman {
+  width: 35%;
+  display: block;
+  margin-right: auto;
+}
+
+/* Animação de pulso para ícones do mapa */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ====================================================
+   ÍCONES INTERATIVOS DO MAPA
+   ====================================================
+   - Todos posicionados de forma absoluta.
+   - Cada wrapper controla a posição e efeito hover.
+   - Hover: aumenta tamanho, rotaciona, adiciona sombra.
+   - Ícone filho pulsa em loop ao hover.
+   ==================================================== */
+
+/* ESCOLA */
+.school-wrapper {
+  position: absolute;
+  top: 37.5%;
+  left: 35.6%;
+  width: 17%;
+  max-width: 120px;
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.school-wrapper:hover {
+  transform: scale(1.4) rotate(-2deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  box-shadow: 0 0 8px #6ded76aa;
+  z-index: 3;
+}
+
+.school {
+  width: 100%;
+  display: block;
+  animation: none;
+}
+
+.school-wrapper:hover .school {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* MERCADO */
+.market-wrapper {
+  position: absolute;
+  top: 38%;
+  left: 53%;
+  width: 18%;
+  max-width: 200px;
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.market-wrapper:hover {
+  transform: scale(1.4) rotate(-2deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  box-shadow: 0 0 8px #6ded76aa;
+  z-index: 3;
+}
+
+.market {
+  width: 100%;
+  display: block;
+  animation: none;
+}
+
+.market-wrapper:hover .market {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* CÚPULA */
+.dome-wrapper {
+  position: absolute;
+  top: 18.5%;
+  left: 39.1%;
+  width: 22%;
+  max-width: 140px;
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dome-wrapper:hover {
+  transform: scale(1.4) rotate(-2deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  box-shadow: 0 0 8px #6ded76aa;
+  z-index: 3;
+}
+
+.dome {
+  width: 100%;
+  display: block;
+  animation: none;
+}
+
+.dome-wrapper:hover .dome {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* TRIGO */
+.wheat-wrapper {
+  position: absolute;
+  top: 4%;
+  left: 34%;
+  width: 16%;
+  max-width: 200px;
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wheat-wrapper:hover {
+  transform: scale(1.4) rotate(-2deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  box-shadow: 0 0 8px #6ded76aa;
+  z-index: 3;
+}
+
+.wheat {
+  width: 100%;
+  display: block;
+  animation: none;
+}
+
+.wheat-wrapper:hover .wheat {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* MILHO */
+.corn-wrapper {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  width: 14%;
+  max-width: 200px;
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.corn-wrapper:hover {
+  transform: scale(1.4) rotate(-2deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  box-shadow: 0 0 8px #6ded76aa;
+  z-index: 3;
+}
+
+.corn {
+  width: 100%;
+  display: block;
+  animation: none;
+}
+
+.corn-wrapper:hover .corn {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* ARMAZÉM */
+.warehouse-wrapper {
+  position: absolute;
+  top: 64%;
+  left: 67%;
+  width: 11%;
+  max-width: 180px;
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.warehouse-wrapper:hover {
+  transform: scale(1.4) rotate(-2deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  box-shadow: 0 0 8px #6ded76aa;
+  z-index: 3;
+}
+
+.warehouse {
+  width: 100%;
+  display: block;
+  animation: none;
+}
+
+.warehouse-wrapper:hover .warehouse {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* FAZENDA */
+.farm-wrapper {
+  position: absolute;
+  top: 37%;
+  left: 80%;
+  width: 19%;
+  max-width: 200px;
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.farm-wrapper:hover {
+  transform: scale(1.4) rotate(-2deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  box-shadow: 0 0 8px #6ded76aa;
+  z-index: 3;
+}
+
+.farm {
+  width: 100%;
+  display: block;
+  animation: none;
+}
+
+.farm-wrapper:hover .farm {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* ======================================================
+   Padroniza aspecto dos ícones no mapa interativo
+   ======================================================
+   Mantém proporção quadrada para evitar distorções
+   em telas responsivas.
+*/
+.wheat,
+.corn,
+.market,
+.school,
+.dome,
+.farm,
+.warehouse {
+  aspect-ratio: 1 / 0;
+}
+
+/* ===================================================
+   Cards Flutuantes do Mapa Interativo
+   ===================================================
+   - Exibe o card de informação quando o wrapper do ícone
+     correspondente é hover.
+   - Define posição de cada card na tela.
+   =================================================== */
+
+/* Torna cada card flutuante visível no hover do ícone */
+.school-wrapper:hover ~ .school-info,
+.market-wrapper:hover ~ .market-info,
+.dome-wrapper:hover ~ .dome-info,
+.wheat-wrapper:hover ~ .wheat-info,
+.corn-wrapper:hover ~ .corn-info,
+.farm-wrapper:hover ~ .farm-info,
+.warehouse-wrapper:hover ~ .warehouse-info {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* === Mapa Interativo - Posições dos Cards === */
+.school-info {
+  top: 0%;
+  left: 8%;
+}
+.market-info {
+  top: 0%;
+  left: 50%;
+}
+.dome-info {
+  top: -20%;
+  left: 50%;
+}
+.wheat-info {
+  top: -30%;
+  left: 50%;
+}
+.corn-info {
+  top: -35%;
+  left: 50%;
+}
+.farm-info {
+  top: 0%;
+  left: 50%;
+}
+.warehouse-info {
+  top: 20%;
+  left: 50%;
+}
+
+/* Desfoque e ajuste de brilho do mapa quando qualquer ícone está ativo */
+.school-wrapper:hover ~ .map-all,
+.market-wrapper:hover ~ .map-all,
+.dome-wrapper:hover ~ .map-all,
+.wheat-wrapper:hover ~ .map-all,
+.corn-wrapper:hover ~ .map-all,
+.farm-wrapper:hover ~ .map-all,
+.warehouse-wrapper:hover ~ .map-all {
+  filter: blur(2px) brightness(0.8) saturate(0.9);
+  transition: filter 0.3s ease;
+}
+
+/* ===================================================
+   Card Flutuante de Informação
+   ===================================================
+   - Isso define o estilo base para todos os cards que
+     aparecem sobre o mapa interativo.
+   - Inclui fundo semi-transparente, borda e sombra.
+   - Por padrão, ficam ocultos até serem ativados via hover.
+   =================================================== */
+
+.info-card {
+  position: absolute;
+  max-width: 300px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-family: var(--fonte-base);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+/* Imagem do card (ícone de destaque) */
+.info-card img {
+  width: 40px;
+  margin-bottom: 10px;
+}
+
+/* Título do card */
+.info-card h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #2371a9;
+}
+
+/* Texto descritivo do card */
+.info-card p {
+  font-size: 14px;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ===================================================
+   A exibição dos cards ocorre no hover do wrapper correspondente.
+   Fim da Sessão Mapa Interativo.
+   =================================================== */
+
+/* ================================================
+   Aba Sustentabilidade
+   ================================================
+   - Seção centralizada com texto explicativo.
+   - Inclui faixa decorativa (::before) na base.
+   - Títulos, parágrafos e imagens com estilo responsivo.
+   ================================================ */
+
+/* Container principal da seção Sustentabilidade */
+.sustentabilidade {
+  font-size: 35px;
+  font-family: var(--fonte-base);
+  text-align: center;
+  color: #6ded76;
+  line-height: 1.5;
+  border-radius: 10px;
+  border-color: #000;
+  text-shadow: 1px 1px 0 #2371a9;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Faixa decorativa na parte inferior */
+.sustentabilidade::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 12px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    #47b881,
+    #47b881 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* Título principal da sustentabilidade */
+.sustentabilidade h1 {
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+}
+
+/* Parágrafo explicativo */
+.sustentabilidade p {
+  line-height: 1.6;
+  font-size: 25px;
+  text-align: left;
+  text-indent: 2em;
+  font-family: var(--fonte-base);
+  color: var(--cor-paragrafos);
+  margin-bottom: 10%;
+}
+
+/* Imagem dentro da seção sustentabilidade */
+.sustentabilidade img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ===========================================
+   Footer Geral
+   ===========================================
+   - Área principal com 3 colunas flexíveis.
+   - Responsivo com wrap e espaçamento.
+   =========================================== */
+
+.footer {
+  background-color: #370022;
+  color: #f1f1f1;
+  padding: 64px 80px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: var(--fonte-base);
+}
+
+/* Bloco da Marca (logo + descrição) */
+
+.marca img {
+  height: 100px;
+  margin-bottom: 16px;
+}
+
+.marca {
+  /* desktop */
+  text-align: left;
+}
+
+.marca p {
+  font-size: 22px;
+  color: #c9c9c9;
+  max-width: 350px;
+}
+
+/* Blocos de Links e Informações */
+.links,
+.info {
+  flex: 1;
+  min-width: 180px;
+}
+
+footer .titulo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #4b9343;
+}
+
+/* Links no Footer */
+footer a {
+  font-size: 16px;
+  color: #f0f0f0;
+  text-decoration: none;
+  margin-bottom: 8px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffd700;
+}
+
+/* Parágrafos gerais no footer */
+footer p {
+  margin-bottom: 12px;
+  max-width: 350px;
+  font-size: 15px;
+}
+
+/* Formulário de Contato no Footer */
+.contato-footer {
+  flex: 1;
+  min-width: 250px;
+}
+
+.contato-footer form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contato-footer label {
+  margin: 6px 0 4px;
+  font-size: 14px;
+  color: #f0f0f0;
+}
+
+.contato-footer input,
+.contato-footer select,
+.contato-footer textarea {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-family: var(--fonte-base);
+}
+
+.contato-footer textarea {
+  resize: vertical;
+}
+
+.contato-footer button {
+  background-color: #4b9343;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contato-footer button:hover {
+  background-color: #357834;
+}
+
+.botao-enviar {
+  background-color: #225022;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.botao-enviar:hover {
+  background-color: #184218;
+  color: #fff;
+}
+
+form .botao-enviar {
+  color: #fff;
+}
+
+.mensagem-sucesso {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: auto;
+  margin-top: 10px;
+  color: #4b9343;
+  font-weight: bold;
+}
+
+#enviarToggle:checked ~ .mensagem-sucesso {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Desativa o botão quando marcado */
+#enviarToggle:checked ~ .botao-enviar {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* === VALIDAÇÃO: botão desativado se campos vazios === */
+form:invalid .botao-enviar {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: default;
+}
+
+form:valid .botao-enviar {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* ===========================================
+   Copyright Final
+   =========================================== */
+#copyright {
+  background-color: #05100d;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+}

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sorgo do Vale connects the countryside and the city, offering fresh family-farmed products with a focus on sustainability, flavor, and opportunities.">
+    <meta name="author" content="Otávio Miguel">
+
+    <link rel="preload" href="../assets/img/cursor.cur" as="image">
+
+    <!-- Link css -->
+    <link rel="stylesheet" href="../assets/css/paginas/index/styles.css">
+    <link rel="stylesheet" href="../assets/css/paginas/responsivo/mobile.css">
+
+    <!-- Link fonts Adequadas para Acessibilidade -->
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
+
+    <!-- Title main -->
+    <title>Agrinho 2025</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/img/sorgo-icon.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <!-- === Global Accessibility Toggles === -->
+    <input type="checkbox" id="fontSizeToggle" class="option-toggle">
+    <input type="checkbox" id="cursorToggle" class="option-toggle">
+    <input type="checkbox" id="contrastToggle" class="option-toggle">
+    <input type="checkbox" id="linksModeToggle" class="option-toggle">
+    <input type="checkbox" id="grayScaleToggle" class="option-toggle">
+    <input type="checkbox" id="darkModeToggle" class="option-toggle">
+
+    <header>
+        <!-- === Accessibility Panel === -->
+        <input type="checkbox" id="accessibilityToggle" class="accessibility-toggle">
+
+        <!-- Floating Accessibility Button -->
+        <label for="accessibilityToggle" class="accessibility-btn pulse-animation"
+            aria-label="Open accessibility options" tabindex="0">
+            <img class="icon-open" src="../assets/img/accessibility-icon.png" alt="Open acessibility panel">
+            <img class="icon-close" src="../assets/img/accessibility-icon-close.png" alt="Close accessibility panel">
+        </label>
+
+        <!-- Accessibility Options Panel -->
+        <div class="accessibility-panel">
+            <h2>Accessibility Options</h2>
+
+            <label for="cursorToggle" class="accessibility-option desktop-only" id="cursor-label" tabindex="0">
+                <div class="accessibility-icon">
+                    <img src="../assets/img/accessibility-cursorToggle.png" alt="">
+                </div>
+                <span>Large Cursor</span>
+            </label>
+
+            <label for="fontSizeToggle" class="accessibility-option" id="font-label" tabindex="0">
+                <div class="accessibility-icon">
+                    <img src="../assets/img/accessibility-fontSizeToggle.png" alt="">
+                </div>
+                <span>Large Font</span>
+            </label>
+
+            <label for="contrastToggle" class="accessibility-option" id="contrast-label" tabindex="0">
+                <div class="accessibility-icon">
+                    <img src="../assets/img/accessibility-contrastToggle.png" alt="">
+                </div>
+                <span>High Contrast</span>
+            </label>
+
+            <label for="linksModeToggle" class="accessibility-option" id="linksmode-label" tabindex="0">
+                <div class="accessibility-icon">
+                    <img src="../assets/img/accessibility-linksModeToggle.png" alt="">
+                </div>
+                <span>Highlighted Links</span>
+            </label>
+
+            <label for="grayScaleToggle" class="accessibility-option" id="grayscale-label" tabindex="0">
+                <div class="accessibility-icon">
+                    <img src="../assets/img/accessibility-grayScaleToggle.png" alt="">
+                </div>
+                <span>Grayscale</span>
+            </label>
+
+            <button id="resetAccessibility" class="accessibility-option resetAccessibility">
+                <div class="accessibility-icon">
+                    <img src="../assets/img/accessibility-reset.png" alt="">
+                </div>
+                <span>Reset Accessibility</span>
+            </button>
+        </div>
+
+        <!-- === Main Navigation === -->
+        <nav class="navegation">
+            <div class="nav-left">
+                <span class="logo">
+                    <img src="../assets/img/sorgo-icon.png" alt="Sorgo do Vale Logo">
+                </span>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="mobile-menu" aria-label="Open navigation menu" tabindex="0">
+                <div class="nav-icon"><span></span></div>
+            </label>
+
+            <!-- Desktop Menu -->
+            <ul class="nav-list">
+                <li><a href="index-en.html#home" id="link-home" aria-current="page">Home</a></li>
+                <li><a href="loja-en.html" id="link-produtos">Store</a></li>
+                <li><a href="index-en.html#receitas" id="link-receitas">Recipes</a></li>
+                <li><a href="sobre-en.html" id="link-sobre">About Us</a></li>
+            </ul>
+
+            <!-- === Mobile Slide Menu === -->
+            <ul class="header-menu">
+                <li><a href="index-en.html#home" aria-current="page">Home</a></li>
+                <li><a href="loja-en.html">Store</a></li>
+                <li><a href="index-en.html#receitas">Recipes</a></li>
+                <li><a href="sobre-en.html">About Us</a></li>
+                <li>
+                    <!-- Night Mode toggle mobile -->
+                    <label for="darkModeToggle" class="btn-mode-night mobile-only"
+                        aria-label="Activate or deactivate night mode"></label>
+
+                    <!-- Language toggle mobile -->
+                    <label for="languageToggle" class="languageButton mobile-only" aria-label="Open language panel"
+                        tabindex="0">
+                        <img class="brlanguage" src="../assets/img/en.png" alt="Change Language">
+                    </label>
+                </li>
+            </ul>
+
+            <!-- === Desktop Right Buttons === -->
+            <div class="nav-right">
+                <!-- Language button desktop -->
+                <label for="languageToggle" class="languageButton desktop-only" aria-label="Open language panel"
+                    tabindex="0">
+                    <img class="brlanguage" src="../assets/img/en.png" alt="Change Language">
+                </label>
+                <input type="checkbox" id="languageToggle" class="languageToggle">
+
+                <!-- Language Panel -->
+                <div class="language-panel">
+                    <label for="languageToggle" class="close-language-panel" tabindex="0"
+                        aria-label="Close language panel">✖</label>
+                    <h1>Select Language</h1>
+                    <div class="language-options">
+                        <a href="../index.html" class="lang-btn br" aria-label="Portuguese" tabindex="0">🇧🇷 Portuguese</a>
+                        <span class="lang-btn en" aria-label="English" aria-current="page">🇬🇧 English</span>
+                    </div>
+                </div>
+
+                <!-- Night mode toggle desktop -->
+                <label for="darkModeToggle" class="btn-mode-night desktop-only"
+                    aria-label="Activate or deactivate night mode" tabindex="0"></label>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- === Background no topo da página === -->
+    <div class="backgroundimage" id="home">
+        <img src="../assets/img/sorgo.jpg" alt="Banner com plantação de sorgo">
+    </div>
+
+    <section class="sobre">
+        <!-- === Seção Breve Sobre === -->
+        <div class="brevesobre">
+            <h1>Sorgo do Vale</h1>
+            <hr class="styled-line">
+            <p>
+                At <b>Sorgo do Vale</b>, we celebrate the connection between the countryside and the city.
+                Our mission is to bring fresh, carefully grown food to urban families, promoting health,
+                sustainability, and opportunities.
+            </p>
+            <p>
+                We value family farming, encourage young people to take the lead in the countryside,
+                and believe that celebrating this union builds bridges for a fairer and more prosperous
+                future.
+            </p>
+            <hr class="styled-line">
+        </div>
+    </section>
+
+    <!-- === Seção Produtos === -->
+    <section class="produtos" id="produtos">
+
+        <!-- === Products Title === -->
+        <div class="produtos-header">
+            <br><br>
+            <h1>Discover Our</h1>
+            <h2>Products</h2>
+        </div>
+
+        <!-- === Galeria de Produtos === -->
+        <div class="produtos-galeria">
+            <div class="produtos-lista">
+
+                <!-- Produto 1 -->
+                <div class="produto-item">
+                    <img src="../assets/img/caqui.png" alt="Persimmon">
+                    <div class="descricao">
+                        <h2>Persimmon</h2>
+                        <p>Sweet, soft and high in fiber. Perfect for fresh desserts.</p>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="produto-item">
+                    <img src="../assets/img/banana.png" alt="Banana">
+                    <div class="descricao">
+                        <h2>Banana Nanica</h2>
+                        <p>Great source of energy, ideal for healthy snacks.</p>
+                    </div>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="produto-item">
+                    <img src="../assets/img/repolho.png" alt="Cabbage">
+                    <div class="descricao">
+                        <h2>Cabbage</h2>
+                        <p>Excellent for fresh salads and nutritious stir-fries.</p>
+                    </div>
+                </div>
+
+                <!-- Produto 4 -->
+                <div class="produto-item">
+                    <img src="../assets/img/manga.png" alt="Mango">
+                    <div class="descricao">
+                        <h2>Palmer Mango</h2>
+                        <p>Sweet and juicy, perfect for juices and desserts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === Indicadores decorativos === -->
+            <div class="produtos-indicadores">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        </div>
+
+        <!-- === Store Button === -->
+        <div class="saibamais">
+            <button onclick="window.location.href='loja-en.html'">Visit Our Store</button>
+        </div>
+    </section>
+
+
+    <!-- === Recipes Section === -->
+    <section class="receitas" id="receitas">
+        <!-- Section Title outside the container to stay within the background -->
+        <div class="receitas-container">
+            <h1>Try Our</h1>
+            <h2>Recipes</h2>
+
+            <!-- === Recipe Book === -->
+            <div class="livroreceitas">
+
+                <!-- === Recipe: Carrot Cake === -->
+                <div class="receita bolo">
+                    <span class="etiqueta">🍽 Serves 6</span>
+                    <button class="saiba-mais">🔍 Learn More</button>
+                    <h3>Carrot Cake</h3>
+                    <img src="../assets/img/bolodecenoura.png" alt="Carrot cake">
+                    <div class="nutricional">🥕 Rich in Vitamin A</div>
+                    <p class="paragrafo">
+                        <strong>Ingredients:</strong><br>
+                        3 medium carrots, 3 eggs, 1 cup oil, 2 cups sugar, 2 cups all-purpose flour, 1 tbsp baking
+                        powder.<br><br>
+                        <strong>Preparation:</strong><br>
+                        Blend the liquids, mix with the dry ingredients, bake at 180°C for 40 min.
+                    </p>
+                </div>
+
+                <!-- === Recipe: Banana Pancake === -->
+                <div class="receita">
+                    <span class="etiqueta">🍽 Serves 2</span>
+                    <button class="saiba-mais">🔍 Learn More</button>
+                    <h3>Banana Pancake</h3>
+                    <img src="../assets/img/panqueca.png" alt="Banana pancake">
+                    <div class="nutricional">🍌 Source of Potassium</div>
+                    <p class="paragrafo">
+                        <strong>Ingredients:</strong><br>
+                        1 ripe banana, 2 eggs, oil for greasing.<br><br>
+                        <strong>Preparation:</strong><br>
+                        Mash the banana and mix with the eggs until smooth. Heat a greased non-stick pan, pour small
+                        portions, and brown on both sides.
+                    </p>
+                </div>
+
+                <!-- === Recipe: Airfryer Potatoes === -->
+                <div class="receita">
+                    <span class="etiqueta">🍽 Serves 3</span>
+                    <button class="saiba-mais">🔍 Learn More</button>
+                    <h3>Airfryer Potatoes</h3>
+                    <img src="../assets/img/batata-airfryer.png" alt="Airfryer potatoes">
+                    <div class="nutricional">🥔 High in Fiber</div>
+                    <p class="paragrafo">
+                        <strong>Ingredients:</strong><br>
+                        3 large potatoes, 1 tbsp olive oil, salt and pepper to taste.<br><br>
+                        <strong>Preparation:</strong><br>
+                        Cut the potatoes into strips and season. Preheat the airfryer to 200°C. Arrange the potatoes in
+                        a single layer and cook for 15–20 minutes or until golden.
+                    </p>
+                </div>
+
+                <!-- === Recipe: Homemade Bread === -->
+                <div class="receita">
+                    <span class="etiqueta">🍞 Serves 4</span>
+                    <button class="saiba-mais">🔍 Learn More</button>
+                    <h3>Homemade Artisan Bread</h3>
+                    <img src="../assets/img/pao.png" alt="Homemade Artisan Bread">
+                    <div class="nutricional">🌱 Naturally Leavened</div>
+                    <p class="paragrafo">
+                        <strong>Ingredients:</strong><br>
+                        500g all-purpose flour, 300ml filtered water, 100g natural sourdough starter (levain), 10g
+                        salt.<br><br>
+                        <strong>Preparation:</strong><br>
+                        Mix all ingredients until you get a smooth dough. Let it rest for 30 minutes, then fold the
+                        dough a few times. Refrigerate for at least 12 hours for natural fermentation. Remove from the
+                        fridge, shape the bread, let it rise until doubled in size, and bake in a preheated oven at
+                        220°C (428°F) for about 30 to 40 minutes.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- === Mapa Interativo === -->
+    <section>
+        <div class="interactive-map">
+            <h1>What’s Your Goal?</h1>
+            <div class="map-container">
+                <div class="map-wrapper">
+
+                    <!-- === Ícones Fixos === -->
+                    <div class="school-wrapper" tabindex="0">
+                        <img src="../assets/img/school.png" class="school" alt="School">
+                    </div>
+
+                    <div class="market-wrapper" tabindex="0">
+                        <img src="../assets/img/market.png" class="market" alt="Market">
+                    </div>
+
+                    <div class="dome-wrapper" tabindex="0">
+                        <img src="../assets/img/dome.png" class="dome" alt="Dome">
+                    </div>
+
+                    <div class="wheat-wrapper" tabindex="0">
+                        <img src="../assets/img/wheat.png" class="wheat" alt="Wheat">
+                    </div>
+
+                    <div class="corn-wrapper" tabindex="0">
+                        <img src="../assets/img/corn.png" class="corn" alt="Corn">
+                    </div>
+
+                    <div class="warehouse-wrapper" tabindex="0">
+                        <img src="../assets/img/warehouse.png" class="warehouse" alt="Warehouse">
+                    </div>
+
+                    <div class="farm-wrapper" tabindex="0">
+                        <img src="../assets/img/farm.png" class="farm" alt="Farm">
+                    </div>
+
+                    <!-- === Imagem do Mapa === -->
+                    <img src="../assets/img/all.png" class="map-all no-link" alt="Map Complete">
+
+                    <!-- === Info Cards === -->
+                    <div class="info-card school-info">
+                        <span>🏫</span>
+                        <h2>State School</h2>
+                        <p>
+                            The school encourages sustainable practices and agro-focused activities with
+                            local students.
+                        </p>
+                    </div>
+
+                    <div class="info-card market-info">
+                        <span>🛒</span>
+                        <h2>Local Market</h2>
+                        <p>A space where family-farmed products are sold directly to the urban community.</p>
+                    </div>
+
+                    <div class="info-card dome-info">
+                        <span>🎪</span>
+                        <h2>Community Greenhouse</h2>
+                        <p>
+                            A protected cultivation area where modern techniques boost productivity and
+                            sustainability.
+                        </p>
+                    </div>
+
+                    <div class="info-card wheat-info">
+                        <span>🌾</span>
+                        <h2>Wheat Plantation</h2>
+                        <p>
+                            A rural area for grain crops, serving as an example of conscious agricultural
+                            production.
+                        </p>
+                    </div>
+
+                    <div class="info-card corn-info">
+                        <span>🌽</span>
+                        <h2>Corn Field</h2>
+                        <p>
+                            This corn plantation supplies local markets and promotes regional product
+                            consumption.
+                        </p>
+                    </div>
+
+                    <div class="info-card farm-info">
+                        <span>🌞</span>
+                        <h2>Sustainable Farm</h2>
+                        <p>
+                            This farm uses solar energy and sustainable techniques for conscious agricultural
+                            production.
+                        </p>
+                    </div>
+
+                    <div class="info-card warehouse-info">
+                        <span>📦</span>
+                        <h2>Central Warehouse</h2>
+                        <p>
+                            Responsible for storing, organizing, and efficiently distributing family-farmed
+                            products.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- === Ilustração ao lado === -->
+                <img class="woman no-link" src="../assets/img/interact-map.png"
+                    alt="Illustration of a woman with interactive map">
+            </div>
+        </div>
+    </section>
+
+    <!-- === Seção Sustentabilidade === -->
+    <section class="susten">
+        <div class="sustentabilidade">
+            <hr class="styled-line">
+            <h1>Sustainability</h1>
+            <img src="../assets/img/sustentabilidade.png" alt="">
+            <p>
+                Choosing Sorgo do Vale’s products means celebrating the connection between countryside and city,
+                valuing local production, conscious consumption, and a more sustainable future.
+                Join us in celebrating this connection!
+            </p>
+        </div>
+    </section>
+
+    <!-- === Footer === -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="marca">
+                <a href="#home">
+                    <img src="../assets/img/sorgo-icon.png" alt="Sorgo do Vale Logo">
+                </a>
+                <p>From Countryside to City: Planting Bridges, Harvesting Dreams</p>
+            </div>
+
+            <div class="links" role="navigation" aria-label="Footer Quick Links">
+                <strong class="titulo">Quick Links</strong>
+                <div>
+                    <a href="#home">Home</a>
+                    <a href="loja-en.html">Store</a>
+                    <a href="#receitas">Recipes</a>
+                    <a href="sobre-en.html">About Us</a>
+                </div>
+            </div>
+
+            <div class="info">
+                <strong class="titulo">Find Us</strong>
+                <p><span>📞</span> WhatsApp: <a href="https://wa.me/5543998211269" target="_blank">(43) 9 9821-1269</a>
+                </p>
+                <p class="no-scale"><span>✉️</span> Email: <a
+                        href="mailto:otavio.araujo.oliveira@escola.pr.gov.br">otavio.araujo.oliveira@escola.pr.gov.br</a>
+                </p>
+            </div>
+
+            <!-- === Contact Form === -->
+            <div class="contato-footer">
+                <strong class="titulo">Quick Contact</strong>
+                <form action="#" method="post" onsubmit="return false">
+                    <label for="nome">Name:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Your name" required>
+
+                    <label for="categoria">Category of interest:</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Select...</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="greens">Greens</option>
+                        <option value="vegetables">Vegetables</option>
+                    </select>
+
+                    <label for="mensagem">Message:</label>
+                    <textarea id="mensagem" name="mensagem" rows="3" placeholder="Type your message"
+                        required></textarea>
+
+                    <!-- Hidden checkbox -->
+                    <input type="checkbox" id="enviarToggle" hidden>
+
+                    <!-- Button is a label -->
+                    <label for="enviarToggle" class="botao-enviar">Send</label>
+
+                    <!-- Success message -->
+                    <p class="mensagem-sucesso">Message sent successfully!</p>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!-- === Copyright === -->
+    <div id="copyright">
+        <p>Agrinho 2025 — Copyright ©2025 Sorgo do Vale</p>
+        <p>All images are the author’s own work: © Otávio Miguel</p>
+    </div>
+
+    <!-- === Scripts === -->
+    <script src="../assets/js/scripts.js" defer></script>
+
+</body>
+
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Sorgo do Vale connects the countryside and the city, offering fresh family-farmed products with a focus on sustainability, flavor, and opportunities." />
+  <meta name="author" content="Otávio Miguel" />
+
+  <link rel="preload" href="../assets/img/cursor.cur" as="image" />
+
+  <!-- Link css -->
+  <link rel="stylesheet" href="../assets/css/paginas/sobrenós/sobre.css" />
+  <link rel="stylesheet" href="../assets/css/paginas/responsivo/mobile.css" />
+
+  <!-- Link fonts Adequadas para Acessibilidade -->
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet" />
+
+  <!-- Title main -->
+  <title>Agrinho 2025</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/img/sorgo-icon.png" type="image/x-icon" />
+</head>
+
+<body>
+  <!-- === Global Accessibility Toggles === -->
+  <input type="checkbox" id="fontSizeToggle" class="option-toggle" />
+  <input type="checkbox" id="cursorToggle" class="option-toggle" />
+  <input type="checkbox" id="contrastToggle" class="option-toggle" />
+  <input type="checkbox" id="linksModeToggle" class="option-toggle" />
+  <input type="checkbox" id="grayScaleToggle" class="option-toggle" />
+  <input type="checkbox" id="darkModeToggle" class="option-toggle" />
+
+  <header>
+    <!-- === Accessibility Panel === -->
+    <input type="checkbox" id="accessibilityToggle" class="accessibility-toggle" />
+
+    <!-- Floating Accessibility Button -->
+    <label for="accessibilityToggle" class="accessibility-btn pulse-animation" aria-label="Open accessibility options"
+      tabindex="0">
+      <img class="icon-open" src="../assets/img/accessibility-icon.png" alt="Open accessibility panel" />
+      <img class="icon-close" src="../assets/img/accessibility-icon-close.png" alt="Close accessibility panel" />
+    </label>
+
+    <!-- Accessibility Options Panel -->
+    <div class="accessibility-panel">
+      <h2>Accessibility Options</h2>
+
+      <label for="cursorToggle" class="accessibility-option desktop-only" id="cursor-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-cursorToggle.png" alt="" />
+        </div>
+        <span>Large Cursor</span>
+      </label>
+
+      <label for="fontSizeToggle" class="accessibility-option" id="font-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-fontSizeToggle.png" alt="" />
+        </div>
+        <span>Large Font</span>
+      </label>
+
+      <label for="contrastToggle" class="accessibility-option" id="contrast-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-contrastToggle.png" alt="" />
+        </div>
+        <span>High Contrast</span>
+      </label>
+
+      <label for="linksModeToggle" class="accessibility-option" id="linksmode-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-linksModeToggle.png" alt="" />
+        </div>
+        <span>Highlighted Links</span>
+      </label>
+
+      <label for="grayScaleToggle" class="accessibility-option" id="grayscale-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-grayScaleToggle.png" alt="" />
+        </div>
+        <span>Grayscale</span>
+      </label>
+
+      <button id="resetAccessibility" class="accessibility-option resetAccessibility">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-reset.png" alt="" />
+        </div>
+        <span>Reset Accessibility</span>
+      </button>
+    </div>
+
+    <!-- === Main Navigation === -->
+    <nav class="navegation">
+      <div class="nav-left">
+        <span class="logo">
+          <img src="../assets/img/sorgo-icon.png" alt="Sorgo do Vale Logo" />
+        </span>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="mobile-menu" aria-label="Open navigation menu" tabindex="0">
+        <div class="nav-icon"><span></span></div>
+      </label>
+
+      <!-- Desktop Menu -->
+      <ul class="nav-list">
+        <li><a href="index-en.html" id="link-home">Home</a></li>
+        <li><a href="loja-en.html" id="link-produtos">Store</a></li>
+        <li><a href="index-en.html#receitas" id="link-receitas">Recipes</a></li>
+        <li><a href="sobre-en.html" id="link-sobre" aria-current="page">About Us</a></li>
+      </ul>
+
+      <!-- === Mobile Slide Menu === -->
+      <ul class="header-menu">
+        <li><a href="index-en.html">Home</a></li>
+        <li><a href="loja-en.html">Store</a></li>
+        <li><a href="index-en.html#receitas">Recipes</a></li>
+        <li><a href="sobre-en.html" aria-current="page">About Us</a></li>
+        <li>
+          <!-- Night Mode toggle mobile -->
+          <label for="darkModeToggle" class="btn-mode-night mobile-only"
+            aria-label="Activate or deactivate night mode"></label>
+
+          <!-- Language toggle mobile -->
+          <label for="languageToggle" class="languageButton mobile-only" aria-label="Open language panel" tabindex="0">
+            <img class="brlanguage" src="../assets/img/en.png" alt="Change Language" />
+          </label>
+        </li>
+      </ul>
+
+      <!-- === Desktop Right Buttons === -->
+      <div class="nav-right">
+        <!-- Language button desktop -->
+        <label for="languageToggle" class="languageButton desktop-only" aria-label="Open language panel" tabindex="0">
+          <img class="brlanguage" src="../assets/img/en.png" alt="Change Language" />
+        </label>
+        <input type="checkbox" id="languageToggle" class="languageToggle" />
+
+        <!-- Language Panel -->
+        <div class="language-panel">
+          <label for="languageToggle" class="close-language-panel" aria-label="Close language panel"
+            tabindex="0">✖</label>
+          <h1>Select Language</h1>
+          <div class="language-options">
+            <a href="../sobre.html" class="lang-btn br" aria-label="Portuguese" tabindex="0">🇧🇷 Portuguese</a>
+            <span class="lang-btn en" aria-label="English" aria-current="page">🇬🇧 English</span>
+          </div>
+        </div>
+
+        <!-- Night Mode toggle desktop -->
+        <label for="darkModeToggle" class="btn-mode-night desktop-only"
+          aria-label="Activate or deactivate night mode" tabindex="0"></label>
+      </div>
+    </nav>
+  </header>
+
+  <!-- === Background no topo da página === -->
+  <div class="backgroundimage" id="home">
+    <img src="../assets/img/sorgo.jpg" alt="Banner com plantação de sorgo" />
+  </div>
+
+  <main>
+    <div class="container">
+      <section class="inicio">
+        <div class="brevesobre">
+          <h1>Who We Are</h1>
+          <hr class="styled-line" />
+          <p>
+            Welcome to <strong>Sorgo do Vale!</strong> Since 2025, we have
+            been more than just a company: we are a living bridge between the
+            countryside and the city. Our purpose is to strengthen family
+            farming, value those who cultivate with dedication, and bring
+            fresh, high-quality produce to every urban family’s table.
+          </p>
+          <p>
+            We believe that every job opportunity created in the countryside
+            resonates in the city, boosts the local economy, and plants the
+            seeds for a fairer and more sustainable future for everyone who
+            celebrates this connection.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel" id="sustentabilidade-card">
+        <div class="panel-content">
+          <img src="../assets/img/sobresustentabilidade.png" alt="Sustainability" width="500" height="350" />
+          <div>
+            <hr class="styled-line" />
+            <h1>Commitment to Sustainability</h1>
+            <p>
+              At <strong>Sorgo do Vale</strong>, sustainability is more than
+              just a practice: it is a daily commitment that connects those
+              who cultivate in the countryside with those who consume in the
+              city, in a responsible and conscious way.
+            </p>
+            <p>
+              We believe that nurturing this connection strengthens
+              communities, preserves biodiversity, and ensures fresh, healthy,
+              and accessible food for everyone.
+            </p>
+            <p>
+              We invest in cultivation techniques that respect the natural
+              cycles of the land, reduce the use of chemical inputs, promote
+              soil health, and save water. This way, every product that
+              reaches you carries the essence of a more vibrant countryside,
+              connected to a city that values conscious consumption.
+            </p>
+            <hr class="styled-line" />
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="visao-card">
+        <div class="panel-content">
+          <div>
+            <hr class="styled-line" />
+            <h1>Our Vision</h1>
+            <p>
+              At <strong>Sorgo do Vale</strong>, we see each piece of produce
+              as a living bridge between those who plant and those who nourish
+              themselves. Our vision is to be a force that unites the
+              countryside and the city in a fair, humane, and transformative
+              way.
+            </p>
+            <p>
+              We aim to inspire other initiatives, engage communities, and
+              show that celebrating this connection every day is the path to a
+              more collaborative, sustainable future full of opportunities for
+              everyone.
+            </p>
+            <hr class="styled-line" />
+          </div>
+          <img src="../assets/img/visao.png" alt="Our Vision" width="420" height="320" />
+        </div>
+      </section>
+
+      <section class="panel" id="experiência">
+        <div class="panel-content">
+          <img src="../assets/img/celular.png" alt="Online Shopping" width="600" height="500" />
+          <div>
+            <hr class="styled-line" />
+            <h1>Online Shopping Experience</h1>
+            <p>
+              At <strong>Sorgo do Vale</strong>, we make the shopping
+              experience more than just practical: it brings the countryside
+              closer to your home with just a few clicks. Our online platform
+              connects local producers and urban families, celebrating the
+              direct relationship with those who cultivate.
+            </p>
+            <p>
+              With simple and intuitive navigation, we offer a wide selection
+              of fresh fruits and products, all carefully chosen to ensure
+              quality, flavor, and to support those who work the land.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- === Footer === -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="marca">
+        <a href="#home">
+          <img src="../assets/img/sorgo-icon.png" alt="Sorgo do Vale Logo" />
+        </a>
+        <p>From Countryside to City: Building Bridges, Harvesting Dreams</p>
+      </div>
+
+      <div class="links" role="navigation" aria-label="Footer Quick Links">
+        <strong class="titulo">Quick Links</strong>
+        <div>
+          <a href="index-en.html">Home</a>
+          <a href="loja-en.html">Shop</a>
+          <a href="index-en.html#receitas">Recipes</a>
+          <a href="sobre-en.html">About Us</a>
+        </div>
+      </div>
+
+      <div class="info">
+        <strong class="titulo">Find Us</strong>
+        <p>
+          <span>📞</span> WhatsApp:
+          <a href="https://wa.me/5543998211269" target="_blank">(43) 9 9821-1269</a>
+        </p>
+        <p class="no-scale">
+          <span>✉️</span> Email:
+          <a href="mailto:otavio.araujo.oliveira@escola.pr.gov.br">otavio.araujo.oliveira@escola.pr.gov.br</a>
+        </p>
+      </div>
+
+      <!-- === Contact Form === -->
+      <div class="contato-footer">
+        <strong class="titulo">Quick Contact</strong>
+        <form action="#" method="post" onsubmit="return false">
+          <label for="nome">Name:</label>
+          <input type="text" id="nome" name="nome" placeholder="Your name" required />
+
+          <label for="categoria">Category of Interest:</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Select...</option>
+            <option value="frutas">Fruits</option>
+            <option value="verduras">Vegetables</option>
+            <option value="legumes">Legumes</option>
+          </select>
+
+          <label for="mensagem">Message:</label>
+          <textarea id="mensagem" name="mensagem" rows="3" placeholder="Type your message" required></textarea>
+
+          <!-- Hidden Checkbox -->
+          <input type="checkbox" id="enviarToggle" hidden />
+
+          <!-- Button is a label -->
+          <label for="enviarToggle" class="botao-enviar">Send</label>
+
+          <!-- Success Message -->
+          <p class="mensagem-sucesso">Message sent successfully!</p>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <!-- === Copyright === -->
+  <div id="copyright">
+    <p>Agrinho 2025 — Copyright ©2025 Sorgo do Vale</p>
+    <p>All images are the author’s own work: © Otávio Miguel</p>
+  </div>
+
+  <!-- === Scripts === -->
+  <script src="../assets/js/scripts.js" defer></script>
+</body>
+
+</html>

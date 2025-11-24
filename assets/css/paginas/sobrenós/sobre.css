@@ -1,0 +1,1055 @@
+/*
+  Projeto: Sorgo do Vale
+  Autor: Otávio Miguel de Araújo Oliveira
+  Descrição: CSS organizado para site Agrinho 2025
+*/
+
+/* 
+  Reset CSS: Remove margens/paddings padrão e define box-sizing border-box 
+  para facilitar o controle de layout e evitar estouros de largura.
+  Também oculta rolagem horizontal e aplica rolagem suave na página.
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+main {
+  flex: 1;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* ===========================================
+   Variáveis Globais
+   ===========================================
+   - Centraliza cores, fontes e sombras.
+   - Facilita manutenção e ajustes rápidos no tema.
+   =========================================== */
+
+:root {
+  --cor-fundonav: #ffffff;
+  --cor-principal: #0b1e18;
+  --cor-fundo: #ffffff;
+  --cor-fundonightmode: #111111;
+
+  --cor-titulos: #a87e68;
+  --cor-paragrafos: #1a1a1a;
+  --cor-paragrafosnightmode: #f5f5f5;
+
+  --fonte-base: "Atkinson Hyperlegible", Arial, sans-serif;
+
+  --sombra-botao: rgba(0, 0, 0, 0.2);
+}
+
+/* =======================================
+   - Linha decorativa padrão (HR).
+   ======================================= */
+
+/* Linha HR reutilizada em seções */
+.styled-line {
+  border: 0;
+  height: 2px;
+  background: #0000006e;
+  margin: 0;
+  width: 100%;
+}
+
+/* ===========================================
+   Navegação Principal
+   ===========================================
+   - Barra fixa no topo.
+   - Layout flexbox para alinhar logo, links e botões.
+   - Responsivo para desktop e mobile.
+   =========================================== */
+
+.navegation {
+  position: fixed;
+  transition: 0.5s;
+  top: 0;
+  width: 100%;
+  height: clamp(60px, 11vh, 90px);
+  background-color: var(--cor-fundonav);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 20;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* Logo da navegação: define tamanho e interação hover. */
+.nav-left .logo img {
+  height: 50px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+/* 
+  Nav List: estrutura da lista de links na navegação,
+  usa flexbox para alinhar itens com espaçamento.
+*/
+.nav-list {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 60px;
+  gap: 32px;
+  list-style: none;
+}
+
+/* Estilo dos links dentro da Nav List. */
+.nav-list li a {
+  font-size: 16px;
+  color: #000;
+  font-family: var(--fonte-base);
+  text-decoration: none;
+}
+
+.nav-list a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Efeito hover para destacar links da Nav List. */
+.nav-list li a:hover {
+  color: #ff9100;
+}
+
+/* Nav Right e Nav Left: alinham itens horizontalmente com espaçamento */
+.nav-right,
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ================================
+   Painel de Troca de Idioma
+   ================================ */
+
+/* Botão de Idioma: ícone clicável que abre painel de seleção de idioma.*/
+.languageButton img {
+  height: 30px;
+  cursor: pointer;
+}
+
+/* Esconde o input toggle do painel de idiomas */
+.languageToggle {
+  display: none;
+}
+
+/* Botão X para fechar o painel manualmente */
+.close-language-panel {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-language-panel:hover {
+  color: #e74c3c;
+}
+
+/* 
+  Painel de Idiomas: aparece centralizado com transição suave.
+*/
+.language-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(30px);
+  width: 280px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 40px 24px 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+  z-index: 998;
+}
+
+.languageToggle:checked ~ .language-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Título do painel de idiomas */
+.language-panel h1 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #333;
+  text-align: center;
+  font-family: var(--fonte-base);
+}
+
+/* Container dos botões de idioma */
+.language-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Botões de seleção de idioma */
+.lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: #47b881;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.lang-btn:hover {
+  background: #368f66;
+}
+
+.lang-btn.en {
+  background: #2371a9;
+}
+
+.lang-btn.en:hover {
+  background: #19567e;
+}
+
+/* === Botão Modo Noturno === */
+/* Tema claro/escuro em desktop e mobile */
+/* .desktop-only e .mobile-only para visibilidade */
+
+.btn-mode-night {
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 60px;
+  background: linear-gradient(to right, #f5f5f5, #e0e0e0);
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+.btn-mode-night:hover {
+  background: linear-gradient(to right, #e6e6e6, #cccccc);
+}
+
+.btn-mode-night::before {
+  content: "☀️";
+  font-size: 22px;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.4s ease, background 0.4s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#darkModeToggle:checked ~ header .btn-mode-night {
+  background: linear-gradient(to right, #2c2c2c, #1a1a1a);
+}
+
+#darkModeToggle:checked ~ header .btn-mode-night::before {
+  content: "🌙";
+  background-color: #111;
+  color: #fff;
+  left: 52px;
+}
+
+/* Visibilidade por dispositivo do botão noturno */
+.desktop-only {
+  display: flex;
+}
+.mobile-only {
+  display: none;
+}
+
+#darkModeToggle:checked ~ section,
+#darkModeToggle:checked ~ header .navegation,
+#darkModeToggle:checked ~ main .inicio,
+#darkModeToggle:checked ~ main .panel {
+  background: var(--cor-fundonightmode);
+  transition: 0.5s;
+}
+
+#darkModeToggle:checked ~ header .navegation a,
+#darkModeToggle:checked ~ main .inicio p,
+#darkModeToggle:checked ~ main .panel p {
+  color: var(--cor-paragrafosnightmode);
+  transition: 0.5s;
+}
+
+/* Exemplo para links e botões se precisar */
+#darkModeToggle:checked ~ a {
+  color: #eee;
+}
+
+#darkModeToggle:checked ~ button {
+  background: #333;
+  color: #fff;
+}
+/* =====================================
+   Configuração de Containers e Imagem de Fundo
+   ===================================== */
+
+/* Seção base: define fundo padrão, transição suave e cursor padrão */
+section {
+  background-color: var(--cor-fundo);
+  transition: 0.5s;
+  cursor: auto;
+}
+
+/* Container da imagem de fundo no topo da página */
+.backgroundimage {
+  height: 300px;
+}
+
+/* Imagem de fundo: cobre toda a largura e altura do container */
+.backgroundimage img {
+  width: 100%;
+  height: 300px;
+  transition: 0.5s;
+  object-fit: cover;
+  background-position: center 70%;
+}
+
+/* ============================================
+   Modo Noturno Ativo
+   ============================================
+
+   Define alterações de cores e imagens 
+   quando o modo noturno é ativado.
+   Inclui:
+   - Fundo escurecido.
+   - Textos em cor clara.
+   - Filtro de brilho para melhor contraste.
+   - Herança de cores em sections.
+   ============================================ */
+
+body.active {
+  background-color: var(--cor-fundonightmode);
+}
+
+body.active .backgroundimage img {
+  background-size: cover;
+  background-position: center 70%;
+  filter: brightness(0.7);
+}
+
+body.active section {
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Troca a cor dos parágrafos, links e títulos para branco, visando destaque no night mode */
+body.active .brevesobre p,
+body.active .navegation a,
+body.active .sustentabilidade p,
+body.active .produtos p,
+body.active .produtos h1 {
+  color: var(--cor-paragrafosnightmode);
+}
+
+body.active .brevesobre p {
+  text-align: justify;
+  text-indent: 2em;
+}
+
+body.active .navegation {
+  background-color: #111;
+  transition: 0.5s;
+}
+
+body.active .manual-btn {
+  border: 2px solid #fff;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+/* Fim do bloco Modo Noturno Ativo */
+
+/* ==============================================
+   Botão de Acessibilidade e Painel de Opções
+   ==============================================
+   - Botão fixo no canto.
+   - Painel flutuante com opções.
+   - Animações, hover e foco para acessibilidade.
+   ============================================== */
+
+/* Botão flutuante de acessibilidade (ícone fixo no canto) */
+.accessibility-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.accessibility-btn img {
+  width: 70%;
+}
+
+.accessibility-btn .icon-close {
+  display: none;
+}
+
+#accessibilityToggle:checked ~ .accessibility-btn .icon-open {
+  display: none;
+}
+
+#accessibilityToggle:checked ~ .accessibility-btn .icon-close {
+  display: block;
+}
+
+.accessibility-btn:hover {
+  transform: scale(1.1);
+  background-color: #1d4ed8;
+}
+
+/* Animação de pulso para destacar o botão acessível */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Destaque de foco para navegação por teclado */
+.accessibility-btn:focus {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.accessibility-option:focus,
+.resetAccessibility:focus {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Painel de opções, oculto até o checkbox ser marcado */
+.accessibility-panel {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 280px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  z-index: 998;
+  transform: translateY(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.accessibility-toggle {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
+
+/* Exibe painel quando toggle está ativado */
+.accessibility-toggle:checked ~ .accessibility-panel {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.accessibility-toggle:checked ~ .accessibility-btn {
+  animation: none;
+}
+
+.accessibility-option {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Botão para resetar todas as opções de acessibilidade */
+.resetAccessibility {
+  border: none;
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.resetAccessibility {
+  width: 100%;
+}
+
+.resetAccessibility:hover {
+  background-color: #fee2e2;
+}
+
+.accessibility-option:hover {
+  background-color: #f3f4f6;
+}
+
+.accessibility-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accessibility-icon img {
+  width: 80%;
+}
+
+/* Esconde checkboxes de opções */
+.option-toggle {
+  display: none;
+}
+
+/* ==============================================
+   Funções de Botões de Acessibilidade
+   ==============================================
+   Define estilos e efeitos ativados quando 
+   cada opção de acessibilidade está marcada.
+   Inclui:
+   - Cursor ampliado
+   - Aumento de fonte
+   - Contraste invertido
+   - Links em destaque
+   - Escala de cinza
+   ============================================== */
+
+/* ======================================
+   Acessibilidade: Cursor Grande Ativado
+   OBS: O cursor pode piscar por 0.1s ao trocar hover, limitação do render do navegador 
+   ====================================== */
+#cursorToggle:checked ~ header .accessibility-option#cursor-label {
+  background-color: #e0e7ff;
+  cursor: url("/Agrinho-2025/assets/img/cursor.cur"), auto !important;
+}
+
+#cursorToggle:checked ~ *,
+#cursorToggle:checked ~ body button,
+#cursorToggle:checked ~ header :hover,
+#cursorToggle:checked ~ main section :hover,
+#cursorToggle:checked ~ footer :hover,
+#cursorToggle:checked ~ main .inicio {
+  cursor: url("/Agrinho-2025/assets/img/cursor.cur"), auto !important;
+}
+
+/* ======================================
+   Acessibilidade: Fontes Maiores
+   ====================================== */
+#fontSizeToggle:checked ~ header .accessibility-option#font-label {
+  background-color: #e0e7ff;
+}
+
+#fontSizeToggle:checked ~ header .navegation a,
+#fontSizeToggle:checked ~ header .accessibility-panel span,
+#fontSizeToggle:checked ~ footer a:not(.no-scale *),
+#fontSizeToggle:checked ~ footer .titulo:not(.no-scale *),
+#fontSizeToggle:checked ~ footer select,
+#fontSizeToggle:checked ~ footer textarea,
+#fontSizeToggle:checked ~ footer input,
+#fontSizeToggle:checked ~ footer label,
+#fontSizeToggle:checked ~ #copyright {
+  font-size: clamp(18px, 3vw, 20px);
+}
+
+/* Parágrafos: escala moderada */
+#fontSizeToggle:checked ~ main .panel p,
+#fontSizeToggle:checked ~ main .inicio p {
+  font-size: clamp(20px, 4.5vw, 28px);
+}
+
+/* Títulos: escala maior */
+#fontSizeToggle:checked ~ main .panel h1,
+#fontSizeToggle:checked ~ main .inicio h1 {
+  font-size: clamp(35px, 7vw, 60px);
+}
+
+/* ======================================
+   Acessibilidade: Contraste Invertido
+   ====================================== */
+#contrastToggle:checked ~ header .accessibility-option#contrast-label {
+  background-color: #e0e7ff;
+}
+
+#contrastToggle:checked ~ section,
+#contrastToggle:checked ~ header .navegation a,
+#contrastToggle:checked ~ header .navegation .nav-list,
+#contrastToggle:checked ~ header .navegation .header-menu,
+#contrastToggle:checked ~ header .navegation .nav-left,
+#contrastToggle:checked ~ header .navegation .nav-right > *:not(.language-panel),
+#contrastToggle:checked ~ .backgroundimage,
+#contrastToggle:checked ~ main .inicio,
+#contrastToggle:checked ~ main .panel,
+#contrastToggle:checked ~ footer,
+#contrastToggle:checked ~ #copyright {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* ======================================
+   Acessibilidade: Links em Destaque
+   ====================================== */
+#linksModeToggle:checked ~ header .accessibility-option#linksmode-label {
+  background-color: #e0e7ff;
+}
+
+#linksModeToggle:checked ~ header .navegation a,
+#linksModeToggle:checked ~ header label:not(.no-link),
+#linksModeToggle:checked ~ footer a,
+#linksModeToggle:checked ~ footer select,
+#linksModeToggle:checked ~ footer textarea,
+#linksModeToggle:checked ~ footer input,
+#linksModeToggle:checked ~ footer .botao-enviar {
+  background-color: yellow;
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+#linksModeToggle:checked ~ header .btn-mode-night {
+  outline: 3px solid yellow;
+  box-shadow: 0 0 10px 4px yellow;
+  transition: box-shadow 0.4s ease, outline 0.4s ease;
+}
+
+/* ======================================
+   Acessibilidade: Escala de Cinza
+   ====================================== */
+#grayScaleToggle:checked ~ header .accessibility-option#grayscale-label {
+  background-color: #e0e7ff;
+}
+
+#grayScaleToggle:checked ~ section,
+#grayScaleToggle:checked ~ header .navegation a,
+#grayScaleToggle:checked ~ header .navegation .nav-list,
+#grayScaleToggle:checked ~ header .navegation .header-menu,
+#grayScaleToggle:checked ~ header .navegation .nav-left,
+#grayScaleToggle:checked ~ header .navegation .nav-right > *:not(.language-panel),
+#grayScaleToggle:checked ~ .backgroundimage,
+#grayScaleToggle:checked ~ main .inicio,
+#grayScaleToggle:checked ~ main .panel,
+#grayScaleToggle:checked ~ footer,
+#grayScaleToggle:checked ~ #copyright {
+  filter: grayscale(100%);
+}
+
+/* ======================================
+   Fim das Funções de Botões de Acessibilidade
+   ====================================== */
+
+/* Conteúdo */
+
+.inicio {
+  background-color: var(--cor-fundo);
+  padding: 50px 0;
+}
+
+.brevesobre {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.brevesobre h1 {
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+}
+
+.brevesobre p {
+  line-height: 1.6;
+  font-size: 25px;
+  text-align: left;
+  text-indent: 2em;
+  font-family: var(--fonte-base);
+  color: var(--cor-paragrafos);
+}
+
+.container {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* O panel cobre a tela toda — fundo 100% */
+.panel {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* O conteúdo interno é limitado e centralizado */
+.panel-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 32px;
+  padding: 24px 40px 128px 40px;
+}
+
+.panel-content > div {
+  flex: 1 1 400px;
+}
+
+.panel-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.panel-content h1 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+}
+
+.panel-content p {
+  line-height: 150%;
+  text-align: left;
+  text-indent: 2em;
+  margin-bottom: 32px;
+  font-size: 25px;
+  color: var(--cor-paragrafos);
+}
+
+.panel > div {
+  flex: 1 1 400px;
+}
+
+.panel h1 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+  font-family: var(--fonte-base);
+  color: var(--cor-titulos);
+}
+
+.panel p {
+  line-height: 150%;
+  text-align: left;
+  text-indent: 2em;
+  margin-bottom: 32px;
+  font-size: 25px;
+  color: var(--cor-paragrafos);
+}
+
+.panel img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===========================================
+   Footer Geral
+   ===========================================
+   - Área principal com 3 colunas flexíveis.
+   - Responsivo com wrap e espaçamento.
+   =========================================== */
+
+.footer {
+  background-color: #0b1e18;
+  color: #f1f1f1;
+  padding: 64px 80px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: var(--fonte-base);
+}
+
+/* Bloco da Marca (logo + descrição) */
+
+.marca img {
+  height: 100px;
+  margin-bottom: 16px;
+}
+
+.marca {
+  text-align: left;
+}
+
+.marca p {
+  font-size: 22px;
+  color: #c9c9c9;
+  max-width: 350px;
+}
+
+/* Blocos de Links e Informações */
+.links,
+.info {
+  flex: 1;
+  min-width: 180px;
+}
+
+footer .titulo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #4b9343;
+}
+
+/* Links no Footer */
+footer a {
+  font-size: 16px;
+  color: #f0f0f0;
+  text-decoration: none;
+  margin-bottom: 8px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffd700;
+}
+
+/* Parágrafos gerais no footer */
+footer p {
+  margin-bottom: 12px;
+  max-width: 350px;
+  font-size: 15px;
+}
+
+/* Formulário de Contato no Footer */
+.contato-footer {
+  flex: 1;
+  min-width: 250px;
+}
+
+.contato-footer form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contato-footer label {
+  margin: 6px 0 4px;
+  font-size: 14px;
+  color: #f0f0f0;
+}
+
+.contato-footer input,
+.contato-footer select,
+.contato-footer textarea {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-family: var(--fonte-base);
+}
+
+.contato-footer textarea {
+  resize: vertical;
+}
+
+.contato-footer button {
+  background-color: #4b9343;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contato-footer button:hover {
+  background-color: #357834;
+}
+
+.botao-enviar {
+  background-color: #225022;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.botao-enviar:hover {
+  background-color: #184218;
+  color: #fff;
+}
+
+form .botao-enviar {
+  color: #fff;
+}
+
+.mensagem-sucesso {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: auto;
+  margin-top: 10px;
+  color: #4b9343;
+  font-weight: bold;
+}
+
+#enviarToggle:checked ~ .mensagem-sucesso {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Desativa o botão quando marcado */
+#enviarToggle:checked ~ .botao-enviar {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* === VALIDAÇÃO: botão desativado se campos vazios === */
+form:invalid .botao-enviar {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: default;
+}
+
+form:valid .botao-enviar {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* ===========================================
+   Copyright Final
+   =========================================== */
+#copyright {
+  background-color: #05100d;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* Responsividade */
+
+@media (max-width: 999px) {
+  .panel {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    width: 100%;
+    max-width: 100%;
+    border: 2px solid #4b9343;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #00000033;
+    transition: border-color 0.3s ease;
+  }
+
+  .panel:hover {
+    border-color: #ff0000;
+  }
+
+  .panel img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+  }
+
+  .panel h1 {
+    font-size: 30px;
+  }
+
+  .panel p {
+    font-size: 30px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .brevesobre h1 {
+    font-size: 35px;
+  }
+
+  .brevesobre p {
+    font-size: 28px;
+  }
+
+  .panel h1 {
+    font-size: 35px;
+  }
+
+  .panel p {
+    font-size: 28px;
+  }
+}

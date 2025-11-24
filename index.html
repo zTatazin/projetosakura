@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Servidor Feito para Servir Você" />
+  <meta name="author" content="Otávio Miguel" />
+
+  <link rel="preload" href="assets/img/cursor.cur" as="image" />
+
+  <!-- Link css -->
+  <link rel="stylesheet" href="assets/css/paginas/index/styles.css" />
+  <link rel="stylesheet" href="assets/css/paginas/responsivo/mobile.css" />
+
+  <!-- Link fonts Adequadas para Acessibilidade -->
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet" />
+
+  <!-- Title main -->
+  <title>Rede Sakura</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
+</head>
+
+<body>
+  <!-- === Inputs Globais de Acessibilidade === -->
+  <input type="checkbox" id="fontSizeToggle" class="option-toggle" />
+  <input type="checkbox" id="cursorToggle" class="option-toggle" />
+  <input type="checkbox" id="contrastToggle" class="option-toggle" />
+  <input type="checkbox" id="linksModeToggle" class="option-toggle" />
+  <input type="checkbox" id="grayScaleToggle" class="option-toggle" />
+  <input type="checkbox" id="darkModeToggle" class="option-toggle" />
+
+  <header>
+    <!-- === Painel de Acessibilidade === -->
+    <input type="checkbox" id="accessibilityToggle" class="accessibility-toggle" />
+
+    <!-- Botão flutuante de Acessibilidade -->
+    <label for="accessibilityToggle" class="accessibility-btn pulse-animation"
+      aria-label="Abrir painel de acessibilidade" tabindex="0">
+      <img class="icon-open" src="assets/img/accessibility-icon.png" alt="Abrir painel de acessibilidade" />
+      <img class="icon-close" src="assets/img/accessibility-icon-close.png" alt="Fechar painel de acessibilidade" />
+    </label>
+
+    <!-- Painel de Opções de Acessibilidade -->
+    <div class="accessibility-panel">
+      <h2 class="text-lg font-semibold text-gray-800 mb-3">
+        Opções de Acessibilidade
+      </h2>
+
+      <!-- Cursor Ampliado -->
+      <label for="cursorToggle" class="accessibility-option desktop-only" id="cursor-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="assets/img/accessibility-cursorToggle.png" alt="" />
+        </div>
+        <span>Cursor Ampliado</span>
+      </label>
+
+      <!-- Aumentar Fonte -->
+      <label for="fontSizeToggle" class="accessibility-option" id="font-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="assets/img/accessibility-fontSizeToggle.png" alt="Fonte Aumentada" />
+        </div>
+        <span>Aumentar Fonte</span>
+      </label>
+
+      <!-- Alto Contraste -->
+      <label for="contrastToggle" class="accessibility-option" id="contrast-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="assets/img/accessibility-contrastToggle.png" alt="" />
+        </div>
+        <span>Alto Contraste</span>
+      </label>
+
+      <!-- Links em Destaque -->
+      <label for="linksModeToggle" class="accessibility-option" id="linksmode-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="assets/img/accessibility-linksModeToggle.png" alt="" />
+        </div>
+        <span>Links em Destaque</span>
+      </label>
+
+      <!-- Escala de Cinza -->
+      <label for="grayScaleToggle" class="accessibility-option" id="grayscale-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="assets/img/accessibility-grayScaleToggle.png" alt="" />
+        </div>
+        <span>Escala de Cinza</span>
+      </label>
+
+      <!-- Botão de Redefinir -->
+      <button id="resetAccessibility" class="accessibility-option resetAccessibility">
+        <div class="accessibility-icon">
+          <img src="assets/img/accessibility-reset.png" alt="" />
+        </div>
+        <span>Redefinir Acessibilidade</span>
+      </button>
+    </div>
+
+    <!-- === Navegação Principal === -->
+    <nav class="navegation">
+      <div class="nav-left">
+        <span class="logo">
+          <img src="assets/img/icon.png" alt="Logo Sorgo do Vale" />
+        </span>
+      </div>
+
+      <!-- Toggle do Menu Mobile -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="mobile-menu" aria-label="Abrir menu de navegação" tabindex="0">
+        <div class="nav-icon"><span></span></div>
+      </label>
+
+      <!-- Menu Desktop -->
+      <ul class="nav-list">
+        <li><a href="#home" id="link-home" aria-current="page">Início</a></li>
+        <li><a href="sobre.html" id="link-sobre">Sobre nós</a></li>
+      </ul>
+
+      <!-- === Menu Mobile Deslizante === -->
+      <ul class="header-menu">
+        <li><a href="#home" aria-current="page">Início</a></li>
+        <li><a href="sobre.html">Sobre nós</a></li>
+        <li>
+          <!-- Botão modo noturno mobile -->
+          <label for="darkModeToggle" class="btn-mode-night mobile-only"
+            aria-label="Ativar ou desativar modo noturno"></label>
+
+        </li>
+      </ul>
+
+      <!-- === Botões Nav Desktop === -->
+      <div class="nav-right">
+
+        <!-- Painel Idioma -->
+        <div class="language-panel">
+          <label for="languageToggle" class="close-language-panel" aria-label="Fechar painel de idiomas"
+            tabindex="0">✖</label>
+          <h1>Selecione o idioma</h1>
+          <div class="language-options">
+            <span class="lang-btn br" aria-label="Português" aria-current="page">🇧🇷 Português</span>
+            <a href="english/index-en.html" class="lang-btn en" aria-label="Inglês" tabindex="0">🇬🇧 English</a>
+          </div>
+        </div>
+
+        <!-- Botão modo noturno desktop -->
+        <label for="darkModeToggle" class="btn-mode-night desktop-only"
+          aria-label="Ativar ou desativar modo noturno" tabindex="0"></label>
+      </div>
+    </nav>
+  </header>
+
+  <!-- === Background no topo da página === -->
+  <div class="backgroundimage" id="home">
+    <img src="assets/img/banner.png" alt="Banner com plantação de sorgo" />
+  </div>
+
+<section class="sobre">
+  <!-- === Seção Conectar ao Servidor === -->
+  <div class="brevesobre">
+    <h1>Rede Sakura</h1>
+    <hr class="styled-line" />
+
+    <p>
+      Bem-vindo à <b>RedeSakura</b> — um servidor de Minecraft criado por um aluno do Colégio Estadual Júlia Wanderley!
+      Entre, explore e faça parte dessa comunidade que nasceu dentro da nossa própria escola e cidade.
+    </p>
+
+    <p>
+      Escolha sua edição e conecte-se com um clique:
+    </p>
+
+    <div class="ip-box">
+      <strong>Bedrock Edition: (Celular)</strong><br>
+      IP: mc.redesakura.com<br>
+      Porta: 10093
+      <br />
+      <button onclick="copiar('mc.redesakura.com')" class="copy-btn">Copiar IP</button>
+      <button onclick="copiar('10093')" class="copy-btn">Copiar Porta</button>
+    </div>
+
+    <div class="ip-box">
+      <strong>Java Edition:</strong><br>
+      mc.redesakura.com
+      <br />
+      <button onclick="copiar('mc.redesakura.com')" class="copy-btn">Copiar IP</button>
+    </div>
+
+    <hr class="styled-line" />
+  </div>
+  <div id="toast">Copiado!</div>
+</section>
+
+
+<section class="slider" id="servidor">
+  <div class="slider-container">
+    <div class="slide active">
+      <img src="assets/img/server1.png" alt="Servidor 1">
+    </div>
+    <div class="slide">
+      <img src="assets/img/server2.png" alt="Servidor 2">
+    </div>
+    <div class="slide">
+      <img src="assets/img/server3.png" alt="Servidor 3">
+    </div>
+    <div class="slide">
+      <img src="assets/img/server4.jpg" alt="Servidor 4">
+    </div>
+  </div>
+
+  <!-- Botões -->
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+
+  <!-- Indicadores -->
+  <div class="slider-indicators">
+    <span class="indicator active"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+  </div>
+</section>
+
+  <!-- === Seção Receitas === -->
+  <section class="receitas" id="receitas">
+    <!-- Título da Seção fora do container para ficar dentro do fundo -->
+    <div class="receitas-container">
+      <h1>Conheça nossos</h1>
+      <h2>Pacotes VIP</h2>
+      <p class="texto-servico">
+        Todas as vendas ajudam a manter o servidor ativo e com melhorias constantes.
+        Ao adquirir um pacote VIP, você apoia nosso projeto e garante benefícios exclusivos dentro do jogo!
+      </p>
+
+      <!-- === Livro de Receitas === -->
+      <div class="livroreceitas">
+        <!-- === Receita: Bolo de Cenoura === -->
+        <div class="receita bolo">
+          <span class="etiqueta">Promoção de pré-venda</span>
+          <button class="saiba-mais">🔍 Saiba Mais</button>
+          <h3>Vip Samurai</h3>
+          <img src="assets/img/vipsamurai.png" alt="Bolo de cenoura" />
+          <div class="nutricional">💰 Valores: <br>Mensal R$16,00 <br> Permanente R$40,00</div>
+          <p class="paragrafo">
+            ✦ Baú Sakura: Nível 3<br />
+            ✦ Mercado: Venda de até 7 itens<br />
+            ✦ Passe VIP disponível<br />
+            ✦ Colorir placas e escrever colorido no chat<br />
+            ✦ Kits VIP poderosos (Kit SAMURAI)<br />
+            ✦ Loja VIP: Venda itens por maiores valores<br />
+            ✦ Mina VIP: Venda itens por maiores valores<br />
+            ✦ Plots: Construa até 3 plots<br />
+            ✦ Possibilidade de juntar 2 ou mais plots<br />
+            ✦ Música na plot<br />
+            ✦ Mais homes e proteção no grief prevention<br />
+            ✦ Chave épica todo mês<br />
+          </p>
+        </div>
+
+        <!-- === Receita: Panqueca de Banana === -->
+        <div class="receita">
+          <span class="etiqueta">Promoção de pré-venda</span>
+          <button class="saiba-mais">🔍 Saiba Mais</button>
+          <h3>Vip Sakura</h3>
+          <img src="assets/img/vipsakura.png" alt="Panqueca de banana" />
+          <div class="nutricional">💰 Valores: <br>Mensal R$24,00 <br> Permanente R$55,00</div>
+          <p class="paragrafo">
+            ✦ Baú Sakura: Nível 5<br />
+            ✦ Mercado: Venda de até 10 itens<br />
+            ✦ Passe VIP disponível<br />
+            ✦ Fly ativado<br />
+            ✦ Colorir placas e escrever colorido no chat<br />
+            ✦ Kits VIP poderosos (Kit SAKURA)<br />
+            ✦ Loja VIP: Itens únicos<br />
+            ✦ Mina VIP: Venda itens por maiores valores<br />
+            ✦ Criar Lojas<br />
+            ✦ Plots: Construa até 4 plots<br />
+            ✦ Possibilidade de juntar 2 ou mais plots<br />
+            ✦ Música na plot<br />
+            ✦ Mais homes e proteção no grief prevention<br />
+            ✦ Chave lendária todo mês<br />
+          </p>
+        </div>
+
+        <!-- === Receita: Chave Épica === -->
+        <div class="receita">
+          <span class="etiqueta">🔑 Chave Épica</span>
+          <button class="saiba-mais">🔍 Saiba Mais</button>
+          <h3>Chave Épica</h3>
+          <img src="assets/img/chave-epica.png" alt="Chave Épica" />
+          <div class="nutricional">💎 Valores: <br> R$8 a R$10</div>
+          <p class="paragrafo">
+            <strong>Benefício:</strong><br />
+            Abre baús especiais no servidor com itens exclusivos e bônus.
+          </p>
+        </div>
+
+        <!-- === Receita: Chave Lendária === -->
+        <div class="receita">
+          <span class="etiqueta">🔑 Chave Lendária</span>
+          <button class="saiba-mais">🔍 Saiba Mais</button>
+          <h3>Chave Lendária</h3>
+          <img src="assets/img/chave-lendaria.png" alt="Chave Lendária" />
+          <div class="nutricional">💎 Valores: <br> R$10 a R$15</div>
+          <p class="paragrafo">
+            <strong>Benefício:</strong><br />
+            Abre baús premium com itens raros e vantagens exclusivas no servidor.
+          </p>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Rodapé === -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="marca">
+        <a href="#home">
+          <img src="assets/img/icon.png" alt="Logo Rede Sakura" />
+        </a>
+        <p>Servidor Feito para Servir Você</p>
+      </div>
+
+      <div class="links" role="navigation" aria-label="Links rápidos do rodapé">
+        <strong class="titulo">Links rápidos</strong>
+        <div>
+          <a href="#home">Início</a>
+          <a href="sobre.html">Sobre Nós</a>
+        </div>
+      </div>
+
+      <div class="info">
+        <strong class="titulo">Encontre-nos</strong>
+        <p class="no-scale">
+          <span>✉️</span> Email:
+          <a href="mailto:redesakura@gmail.com">redesakura@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- === Copyright === -->
+  <div id="copyright">
+    <p>Copyright ©2025 Rede Sakura</p>
+  </div>
+
+  <!-- === Scripts === -->
+  <script src="assets/js/scripts.js" defer></script>
+</body>
+
+</html>

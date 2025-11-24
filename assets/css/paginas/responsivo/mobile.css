@@ -1,0 +1,715 @@
+:root {
+  --fonte-base: "Atkinson Hyperlegible", Arial, sans-serif;
+  --cor-paragrafosnightmode: #f5e5e5;
+}
+
+/* Estado base: escondido no desktop */
+/* ===========================================
+   Menu Mobile Responsivo
+   ===========================================
+   - Ícone hamburguer com animação.
+   - Botão de toggle para abrir/fechar.
+   - Menu lateral deslizante com efeito.
+   =========================================== */
+
+/* Estado base: escondido no desktop */
+/* Botão do menu hamburguer - estado base */
+.mobile-menu {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1001;
+
+  /* Área maior de clique */
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+
+  display: none;
+}
+
+/* Barras do ícone hambúrguer */
+.nav-icon {
+  position: relative;
+  width: 32px;
+  height: 2px;
+  background: transparent;
+  display: inline-block;
+}
+
+.nav-icon::before,
+.nav-icon::after,
+.nav-icon span {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 2px;
+  background-color: #333;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-icon::before {
+  top: -8px;
+}
+
+.nav-icon::after {
+  top: 8px;
+}
+
+.nav-icon span {
+  top: 0;
+}
+
+/* Checkbox de toggle invisível */
+.menu-toggle {
+  display: none;
+}
+
+/* Animação do ícone ao abrir */
+.menu-toggle:checked + .mobile-menu .nav-icon::before {
+  transform: translateY(8px) rotate(-45deg);
+}
+
+.menu-toggle:checked + .mobile-menu .nav-icon::after {
+  transform: translateY(-8px) rotate(45deg);
+}
+
+.menu-toggle:checked + .mobile-menu .nav-icon span {
+  transform: scale(0);
+}
+
+/* ===========================================
+   Menu Deslizante (Lateral) para Mobile
+   ===========================================
+   - Sai da direita, ocupa 50% da tela.
+   - Flexbox para organizar links verticalmente.
+   - Sombra suave e fundo sólido.
+   =========================================== */
+
+.header-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 80px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: right 0.3s ease;
+  z-index: 100;
+  transition: 0.5s;
+}
+
+#darkModeToggle:checked ~ header .header-menu {
+  background: var(--cor-fundonightmode);
+  color: var(--cor-paragrafosnightmode);
+  transition: 0.5s;
+}
+
+#darkModeToggle:checked ~ header .header-menu a {
+  color: var(--cor-paragrafosnightmode);
+  transition: 0.5s;
+}
+
+.menu-toggle:checked ~ .header-menu {
+  right: 0;
+}
+
+.header-menu li {
+  list-style: none;
+  margin: 8px 0;
+}
+
+.header-menu a {
+  display: block;
+  font-size: 16px;
+  font-family: var(--fonte-base);
+  color: #000;
+  text-decoration: none;
+  padding: 12px 0;
+  transition: color 0.3s ease;
+}
+
+.header-menu a:hover {
+  color: #ff9100;
+}
+
+@media (max-width: 600px) {
+  /* ===========================================
+     Breve Sobre - Ajustes Mobile
+     ===========================================
+     Reduz padding lateral e tamanhos de fonte
+     para melhor leitura em telas menores.
+     =========================================== */
+
+  .brevesobre {
+    padding: 0 16px;
+  }
+
+  .brevesobre h1 {
+    font-size: 28px;
+  }
+
+  .brevesobre p {
+    font-size: 18px;
+  }
+
+  .saibamais button {
+    font-size: 20px;
+    padding: 12px 32px;
+  }
+}
+
+/* Fim Menu para mobile */
+
+@media (max-width: 999px) {
+  /* ===========================================
+     Menu Mobile e Navegação Responsiva
+     ===========================================
+     Ajusta visibilidade de elementos, posição do botão
+     de acessibilidade, e layout do menu lateral.
+     =========================================== */
+
+  /* Botão de Acessibilidade vai para a esquerda */
+  .accessibility-btn {
+    right: auto;
+    left: 20px;
+  }
+
+  /* Painel de Acessibilidade acompanha o botão */
+  .accessibility-panel {
+    right: auto;
+    left: 20px;
+  }
+
+  /* Visibilidade Desktop/Mobile */
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: inline-block;
+    padding-left: 10%;
+  }
+
+  /* Esconde nav-list no mobile */
+  .nav-list {
+    display: none;
+  }
+
+  /* Exibe o ícone hamburguer */
+  .mobile-menu {
+    display: flex;
+  }
+
+  /* Menu lateral: estrutura vertical */
+  .header-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Toggle invisível permanece escondido */
+  .menu-toggle {
+    display: none;
+  }
+
+  /* Ativa menu lateral quando toggle está checado */
+  .menu-toggle:checked ~ .header-menu {
+    right: 0;
+    max-height: 100vh;
+  }
+
+  /* Itens da lista no menu lateral */
+  .header-menu li {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .header-menu a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-family: var(--fonte-base);
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .header-menu a:hover {
+    color: #ff9100;
+  }
+
+  /* === Layout Geral === */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ===========================================
+    Geral/Navegação - Ajustes Mobile
+    =========================================== */
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Esconde nav-list no mobile, pois usa header-menu */
+  .nav-list {
+    display: none;
+  }
+
+  /* Exibe ícone hamburguer no mobile */
+  .mobile-menu {
+    display: flex;
+  }
+
+  /* Container principal de conteúdo */
+  .container {
+    min-height: 100vh;
+  }
+
+  /* ===========================================
+    Cards (exemplo de layout flex)
+    =========================================== */
+
+  .main {
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  .card {
+    margin: 10px;
+    background-color: black;
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: #aaaaaa;
+  }
+
+  /* ===========================================
+     Produtos - Ajustes Mobile
+     =========================================== */
+
+  .produtos-galeria {
+    padding: 0 10px;
+  }
+
+  .produto-item {
+    flex: 1 1 140px;
+    max-width: 160px;
+  }
+
+  .produto-item img {
+    max-width: 140px;
+  }
+
+  .descricao h2 {
+    font-size: 16px;
+  }
+
+  .descricao p {
+    font-size: 13px;
+  }
+
+  .saibamais button {
+    font-size: 18px;
+    padding: 10px 30px;
+  }
+
+  /* ===========================================
+     Receitas - Ajustes Mobile
+     =========================================== */
+
+  .receitas {
+    background: url(/assets/img/sorgo.jpg) no-repeat center center;
+    background-size: cover;
+    padding-bottom: 50px;
+    width: 100%;
+  }
+
+  .livroreceitas {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .receita {
+    text-align: center;
+    border: 3px solid #000;
+    padding: 5px 15px;
+    background-color: rgb(106, 146, 114);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: var(--fonte-base);
+    font-size: 42px;
+    position: relative;
+    z-index: 1;
+    min-height: 400px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .receita .etiqueta {
+    top: 8px;
+    left: 8px;
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .receita .nutricional {
+    bottom: 10px;
+    font-size: 11px;
+    padding: 3px 6px;
+    max-width: 90%;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .receita img {
+    height: auto;
+    width: 100%;
+  }
+
+  .receita button {
+    margin-top: 15px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #3b32b6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    font-family: var(--fonte-base);
+    z-index: 2;
+  }
+
+  .receita.ativa button {
+    transform: rotateY(180deg);
+    opacity: 0.3;
+  }
+
+  .receita button:hover {
+    background-color: rgb(15, 10, 83);
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .receita.ativa h3,
+  .receita.ativa .etiqueta {
+    transform: rotateY(180deg);
+  }
+
+  .receita.ativa .nutricional {
+    z-index: 0;
+    visibility: hidden;
+  }
+
+  .receita .paragrafo {
+    scroll-behavior: smooth;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 8px;
+    font-size: 19px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -100%;
+    height: auto;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.612);
+    padding: 0 24px;
+    border: 1px solid #af7a73;
+    border-radius: 0 0 8px 8px;
+    box-sizing: border-box;
+    transition: opacity 0.2s, bottom 0.2s;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    z-index: 1;
+  }
+
+  .receita.ativa .paragrafo {
+    backface-visibility: visible;
+  }
+
+  .receita.ativa {
+    transform: rotateY(180deg);
+  }
+
+  .school-info,
+  .market-info,
+  .dome-info,
+  .wheat-info,
+  .corn-info,
+  .farm-info,
+  .warehouse-info {
+    top: -55%;
+    left: 110%;
+  }
+
+  /* ===========================================
+     Sustentabilidade - Ajustes Mobile
+     =========================================== */
+
+  .sustentabilidade {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    max-width: 90%;
+    border: 2px solid #4b9343;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #00000033;
+    transition: border-color 0.3s ease;
+  }
+
+  /* ===========================================
+     Footer - Ajustes Mobile
+     =========================================== */
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-container > div {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .marca,
+  .links,
+  .info,
+  .contato-footer {
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .marca img {
+    margin: 0 auto 16px;
+    height: 80px;
+  }
+
+  .marca {
+    text-align: center;
+  }
+
+  .marca p {
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+    word-break: break-word;
+  }
+
+  .links,
+  .info {
+    flex: unset;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: normal;
+  }
+
+  .links a,
+  .info a {
+    font-size: 16px;
+    color: #f1f1f1;
+    margin-bottom: 6px;
+    text-decoration: none;
+  }
+
+  .links a:hover,
+  .info a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+  }
+
+  footer .titulo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4b9343;
+    margin-bottom: 8px;
+    font-family: var(--fonte-base);
+  }
+
+  footer p {
+    font-size: 15px;
+    margin-bottom: 12px;
+    max-width: 90%;
+  }
+
+  footer p a {
+    color: #f1f1f1;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  /* ===========================================
+     Copyright - Ajuste Mobile
+     =========================================== */
+
+  #copyright {
+    background-color: #263138;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  #copyright a {
+    color: #ff9a6c;
+  }
+}
+
+/* ===========================================
+   Receitas - Ajustes Responsivos (<= 768px)
+   =========================================== */
+
+@media (max-width: 768px) {
+  .livroreceitas {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .receita {
+    font-size: 40px;
+    padding: 10px;
+    min-height: 300px;
+  }
+
+  .receita button {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .receita .paragrafo {
+    scroll-behavior: smooth;
+    font-size: 15.5px;
+    padding: 0 12px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+
+/* ===========================================
+   Receitas - Ajustes Super Mobile (<= 480px)
+   =========================================== */
+
+@media (max-width: 480px) {
+  .livroreceitas {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .receita {
+    font-size: 60px;
+    padding: 8px;
+    min-height: 250px;
+  }
+
+  .receita button {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .receita .paragrafo {
+    font-size: 20px;
+    padding: 0 8px;
+  }
+
+  .schoolText {
+    font-size: 35px;
+    font-family: var(--fonte-base);
+    text-align: center;
+    color: #6ded76;
+    padding: 20px;
+    margin-bottom: 100px;
+    border: 2px solid #000;
+    text-shadow: 1px 0.5px 0 #000;
+    line-height: 1.5;
+    border-radius: 10px;
+  }
+}
+
+/* ===================================== */
+/* 🔻 RESPONSIVIDADE 🔻 */
+/* ===================================== */
+
+/* === Tablets === */
+@media (max-width: 900px) {
+  .slider {
+    max-width: 95%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .prev,
+  .next {
+    font-size: 20px;
+    padding: 10px 14px;
+  }
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* === Celulares grandes === */
+@media (max-width: 600px) {
+  .slider {
+    max-width: 100%;
+    border-radius: 12px;
+    aspect-ratio: 16 / 10; /* um pouco mais alto no celular */
+  }
+
+  .prev,
+  .next {
+    padding: 10px 12px;
+    font-size: 18px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* === Celulares pequenos === */
+@media (max-width: 420px) {
+  .slider {
+    border-radius: 8px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .prev,
+  .next {
+    padding: 8px 10px;
+    font-size: 16px;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+}

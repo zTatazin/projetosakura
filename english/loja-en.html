@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Sorgo do Vale connects the countryside and the city, offering fresh family-farmed products with a focus on sustainability, flavor, and opportunities." />
+  <meta name="author" content="Otávio Miguel" />
+
+  <link rel="preload" href="../assets/img/cursor.cur" as="image" />
+
+  <!-- Link css -->
+  <link rel="stylesheet" href="../assets/css/paginas/loja/loja.css" />
+  <link rel="stylesheet" href="../assets/css/paginas/responsivo/mobile.css" />
+
+  <!-- Link fonts Adequadas para Acessibilidade -->
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet" />
+
+  <!-- Title main -->
+  <title>Agrinho 2025</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/img/sorgo-icon.png" type="image/x-icon" />
+</head>
+
+<body>
+  <!-- === Global Accessibility Toggles === -->
+  <input type="checkbox" id="fontSizeToggle" class="option-toggle" />
+  <input type="checkbox" id="cursorToggle" class="option-toggle" />
+  <input type="checkbox" id="contrastToggle" class="option-toggle" />
+  <input type="checkbox" id="linksModeToggle" class="option-toggle" />
+  <input type="checkbox" id="grayScaleToggle" class="option-toggle" />
+  <input type="checkbox" id="darkModeToggle" class="option-toggle" />
+
+  <header>
+    <!-- === Accessibility Panel === -->
+    <input type="checkbox" id="accessibilityToggle" class="accessibility-toggle" />
+
+    <!-- Floating Accessibility Button -->
+    <label for="accessibilityToggle" class="accessibility-btn pulse-animation" aria-label="Open accessibility options"
+      tabindex="0">
+      <img class="icon-open" src="../assets/img/accessibility-icon.png" alt="Open accessibility panel" />
+      <img class="icon-close" src="../assets/img/accessibility-icon-close.png" alt="Close accessibility panel" />
+    </label>
+
+    <!-- Accessibility Options Panel -->
+    <div class="accessibility-panel">
+      <h2>Accessibility Options</h2>
+
+      <label for="cursorToggle" class="accessibility-option desktop-only" id="cursor-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-cursorToggle.png" alt="" />
+        </div>
+        <span>Large Cursor</span>
+      </label>
+
+      <label for="fontSizeToggle" class="accessibility-option" id="font-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-fontSizeToggle.png" alt="" />
+        </div>
+        <span>Large Font</span>
+      </label>
+
+      <label for="contrastToggle" class="accessibility-option" id="contrast-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-contrastToggle.png" alt="" />
+        </div>
+        <span>High Contrast</span>
+      </label>
+
+      <label for="linksModeToggle" class="accessibility-option" id="linksmode-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-linksModeToggle.png" alt="" />
+        </div>
+        <span>Highlighted Links</span>
+      </label>
+
+      <label for="grayScaleToggle" class="accessibility-option" id="grayscale-label" tabindex="0">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-grayScaleToggle.png" alt="" />
+        </div>
+        <span>Grayscale</span>
+      </label>
+
+      <button id="resetAccessibility" class="accessibility-option resetAccessibility">
+        <div class="accessibility-icon">
+          <img src="../assets/img/accessibility-reset.png" alt="" />
+        </div>
+        <span>Reset Accessibility</span>
+      </button>
+    </div>
+
+    <!-- === Main Navigation === -->
+    <nav class="navegation">
+      <div class="nav-left">
+        <span class="logo">
+          <img src="../assets/img/sorgo-icon.png" alt="Sorgo do Vale Logo" />
+        </span>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="mobile-menu" aria-label="Open navigation menu" tabindex="0">
+        <div class="nav-icon"><span></span></div>
+      </label>
+
+      <!-- Desktop Menu -->
+      <ul class="nav-list">
+        <li><a href="index-en.html" id="link-home">Home</a></li>
+        <li><a href="loja-en.html" id="link-produtos" aria-current="page">Store</a></li>
+        <li><a href="index-en.html#receitas" id="link-receitas">Recipes</a></li>
+        <li><a href="sobre-en.html" id="link-sobre">About Us</a></li>
+      </ul>
+
+      <!-- === Mobile Slide Menu === -->
+      <ul class="header-menu">
+        <li><a href="index-en.html">Home</a></li>
+        <li><a href="loja-en.html" aria-current="page">Store</a></li>
+        <li><a href="index-en.html#receitas">Recipes</a></li>
+        <li><a href="sobre-en.html">About Us</a></li>
+        <li>
+          <!-- Night mode toggle mobile -->
+          <label for="darkModeToggle" class="btn-mode-night mobile-only"
+            aria-label="Activate or deactivate night mode"></label>
+
+          <!-- Language toggle mobile -->
+          <label for="languageToggle" class="languageButton mobile-only" aria-label="Open language panel" tabindex="0">
+            <img class="brlanguage" src="../assets/img/en.png" alt="Change Language" />
+          </label>
+        </li>
+      </ul>
+
+      <!-- === Desktop Right Buttons === -->
+      <div class="nav-right">
+        <!-- Language button desktop -->
+        <label for="languageToggle" class="languageButton desktop-only" aria-label="Open language panel" tabindex="0">
+          <img class="brlanguage" src="../assets/img/en.png" alt="Change Language" />
+        </label>
+        <input type="checkbox" id="languageToggle" class="languageToggle" />
+
+        <!-- Language Panel -->
+        <div class="language-panel">
+          <label for="languageToggle" class="close-language-panel" aria-label="Close language panel"
+            tabindex="0">✖</label>
+          <h1>Select Language</h1>
+          <div class="language-options">
+            <a href="../loja.html" class="lang-btn br" aria-label="Portuguese" tabindex="0">🇧🇷 Portuguese</a>
+            <span class="lang-btn en" aria-label="English" aria-current="page">🇬🇧 English</span>
+          </div>
+        </div>
+
+        <!-- Night mode toggle desktop -->
+        <label for="darkModeToggle" class="btn-mode-night desktop-only"
+          aria-label="Activate or deactivate night mode" tabindex="0"></label>
+      </div>
+    </nav>
+  </header>
+
+  <!-- === Background at the top of the page === -->
+  <main>
+    <div class="backgroundimage" id="home">
+      <img src="../assets/img/sorgo.jpg" alt="Banner com plantação de sorgo" />
+    </div>
+
+    <section class="brevesobre-wrapper">
+      <div class="brevesobre">
+        <h1>Our Available Products</h1>
+        <p>
+          Welcome to our products section! In 2025, we are
+          <b>celebrating the connection between countryside and city</b>,
+          bringing you a special selection of fresh fruits, vegetables, and
+          greens, all grown with care, respect, and a strong commitment to
+          sustainability. Our mission is to bring farmers and consumers closer
+          together, harvesting opportunities for everyone. Discover our new
+          arrivals, take advantage of exclusive offers, and celebrate the
+          taste, quality, and union from farm to urban table.
+        </p>
+      </div>
+    </section>
+
+    <section class="inicio">
+      <div class="produtoprincipal">
+        <img src="../assets/img/banana.png" alt="" />
+        <div class="info-produto">
+          <h1>Bananas</h1>
+          <hr class="styled-line" />
+          <p>
+            At <b>Hortaliças do Vale</b>, the quality of our products is our
+            top priority. We recognize that job opportunities are a constant
+            need, and our company is dedicated to providing as many work
+            opportunities as possible for local residents throughout the
+            region.
+          </p>
+          <p class="preco">R$ 4.99 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="produtos">
+      <div class="produtos-container">
+        <!-- VEGETABLES & LEGUMES -->
+        <!-- Tomato Card -->
+        <div class="card-produto">
+          <img src="../assets/img/tomate.png" alt="" />
+          <h2>Tomato</h2>
+          <p class="preco">R$ 4.50 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Lime Card -->
+        <div class="card-produto">
+          <img src="../assets/img/limao.png" alt="" />
+          <h2>Lime</h2>
+          <p class="preco">R$ 3.00 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Onion Card -->
+        <div class="card-produto">
+          <img src="../assets/img/cebola.png" alt="" />
+          <h2>Onion</h2>
+          <p class="preco">R$ 2.99 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Carrot Card -->
+        <div class="card-produto">
+          <img src="../assets/img/cenoura.png" alt="" />
+          <h2>Carrot</h2>
+          <p class="preco">R$ 3.50 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Potato Card -->
+        <div class="card-produto">
+          <img src="../assets/img/batata.png" alt="" />
+          <h2>Potato</h2>
+          <p class="preco">R$ 5.99 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Cabbage Card -->
+        <div class="card-produto">
+          <img src="../assets/img/repolho.png" alt="" />
+          <h2>Cabbage</h2>
+          <p class="preco">R$ 3.99 / unit</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- FRUITS -->
+        <!-- Mango Card -->
+        <div class="card-produto">
+          <img src="../assets/img/manga.png" alt="" />
+          <h2>Mango</h2>
+          <p class="preco">R$ 4.50 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Grape Card -->
+        <div class="card-produto">
+          <img src="../assets/img/uva.png" alt="" />
+          <h2>Grape</h2>
+          <p class="preco">R$ 6.50 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Melon Card -->
+        <div class="card-produto">
+          <img src="../assets/img/melao.png" alt="" />
+          <h2>Melon</h2>
+          <p class="preco">R$ 7.99 / unit</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Watermelon Card -->
+        <div class="card-produto">
+          <img src="../assets/img/melancia.png" alt="" />
+          <h2>Watermelon</h2>
+          <p class="preco">R$ 9.99 / unit</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Pear Card -->
+        <div class="card-produto">
+          <img src="../assets/img/pera.png" alt="" />
+          <h2>Pear</h2>
+          <p class="preco">R$ 5.99 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Strawberry Card -->
+        <div class="card-produto">
+          <img src="../assets/img/morango.png" alt="" />
+          <h2>Strawberry</h2>
+          <p class="preco">R$ 6.99 / box</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Apple Card -->
+        <div class="card-produto">
+          <img src="../assets/img/maca.png" alt="" />
+          <h2>Apple</h2>
+          <p class="preco">R$ 5.50 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Orange Card -->
+        <div class="card-produto">
+          <img src="../assets/img/laranja.png" alt="" />
+          <h2>Orange</h2>
+          <p class="preco">R$ 3.50 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+
+        <!-- Persimmon Card -->
+        <div class="card-produto">
+          <img src="../assets/img/caqui.png" alt="" />
+          <h2>Persimmon</h2>
+          <p class="preco">R$ 4.99 / kg</p>
+          <button class="botao-compra">Buy</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- === Footer === -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="marca">
+        <a href="#home">
+          <img src="../assets/img/sorgo-icon.png" alt="Sorgo do Vale Logo" />
+        </a>
+        <p>From Countryside to City: Building Bridges, Harvesting Dreams</p>
+      </div>
+
+      <div class="links" role="navigation" aria-label="Footer Quick Links">
+        <strong class="titulo">Quick Links</strong>
+        <div>
+          <a href="index-en.html">Home</a>
+          <a href="loja-en.html">Shop</a>
+          <a href="index-en.html#receitas">Recipes</a>
+          <a href="sobre-en.html">About Us</a>
+        </div>
+      </div>
+
+      <div class="info">
+        <strong class="titulo">Find Us</strong>
+        <p>
+          <span>📞</span> WhatsApp:
+          <a href="https://wa.me/5543998211269" target="_blank">(43) 9 9821-1269</a>
+        </p>
+        <p class="no-scale">
+          <span>✉️</span> Email:
+          <a href="mailto:otavio.araujo.oliveira@escola.pr.gov.br">otavio.araujo.oliveira@escola.pr.gov.br</a>
+        </p>
+      </div>
+
+      <!-- === Contact Form === -->
+      <div class="contato-footer">
+        <strong class="titulo">Quick Contact</strong>
+        <form action="#" method="post" onsubmit="return false">
+          <label for="nome">Name:</label>
+          <input type="text" id="nome" name="nome" placeholder="Your name" required />
+
+          <label for="categoria">Category of Interest:</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Select...</option>
+            <option value="frutas">Fruits</option>
+            <option value="verduras">Vegetables</option>
+            <option value="legumes">Legumes</option>
+          </select>
+
+          <label for="mensagem">Message:</label>
+          <textarea id="mensagem" name="mensagem" rows="3" placeholder="Type your message" required></textarea>
+
+          <!-- Hidden Checkbox -->
+          <input type="checkbox" id="enviarToggle" hidden />
+
+          <!-- Button is a label -->
+          <label for="enviarToggle" class="botao-enviar">Send</label>
+
+          <!-- Success Message -->
+          <p class="mensagem-sucesso">Message sent successfully!</p>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <!-- === Copyright === -->
+  <div id="copyright">
+    <p>Agrinho 2025 — Copyright ©2025 Sorgo do Vale</p>
+    <p>All images are the author’s own work: © Otávio Miguel</p>
+  </div>
+
+  <!-- === Scripts === -->
+  <script src="../assets/js/scripts.js" defer></script>
+</body>
+
+</html>
